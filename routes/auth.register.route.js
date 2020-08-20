@@ -1,9 +1,6 @@
 const express = require('express');
 const route = express.Router();
 const repoUsuarios = require('../repositories/usuarios.repo');
-const middAuthToken = require('../middlewares/auth.token');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 route.post('/', async (req, res) => {
 	let usuario = req.body;
