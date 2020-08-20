@@ -4,7 +4,10 @@ const jwt = require('jsonwebtoken');
 const authToken = require('../middlewares/auth.token');
 
 async function comprobarContrasenia(data, usuario) {
-	bcrypt.compare(data.contrasenia, usuario.contrasenia, function (match) {
+	bcrypt.compare(data.contrasenia, usuario.contrasenia, function (err, match) {
+		if (err) {
+			throw new Error('No se pudo comprobar la contraseña');
+		}
 		if (match) {
 			let payload = {
 				usuario: usuario.username,
@@ -12,12 +15,12 @@ async function comprobarContrasenia(data, usuario) {
 				telefono: usuario.telefono,
 				permisos: usuario.permisos_id,
 			};
-			jwt.sign(payload, authToken.claveSecreta, (error, token) => {
+			console.log(payload);
+			jwt.sign(payload, authToken.claveSecreta, function (error, token) {
 				if (error) {
 					throw new Error('No se pudo validar el usuario');
-				} else {
-					return token;
 				}
+				return token;
 			});
 		} else {
 			throw new Error('Contraseña incorrecta');
@@ -29,9 +32,13 @@ async function login(data) {
 	let usuario = data;
 	try {
 		repoUsuarios.comprobarUsuario(usuario).then((result) => {
-			let usuarioExistente = result;
-			let token = comprobarContrasenia(usuario, usuarioExistente);
-			return token;
+			let usuarioExistente = result[0];
+			let resultado = comprobarContrasenia(usuario, usuarioExistente).then((result) => {
+				console.log(result);
+				let token = result;
+				return token;
+			});
+			console.log(resultado);
 		});
 	} catch (error) {
 		return error;

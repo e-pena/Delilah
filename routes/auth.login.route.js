@@ -6,7 +6,6 @@ route.post('/', async (req, res) => {
 	let usuario = req.body;
 	try {
 		serviceUsuarios.login(usuario).then((result) => {
-			console.log(result);
 			res.status(200).json(result);
 		});
 	} catch (error) {
