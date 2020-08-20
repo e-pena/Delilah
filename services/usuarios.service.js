@@ -15,7 +15,6 @@ async function comprobarContrasenia(data, usuario) {
 				telefono: usuario.telefono,
 				permisos: usuario.permisos_id,
 			};
-			console.log(payload);
 			jwt.sign(payload, authToken.claveSecreta, function (error, token) {
 				if (error) {
 					throw new Error('No se pudo validar el usuario');
@@ -33,12 +32,11 @@ async function login(data) {
 	try {
 		repoUsuarios.comprobarUsuario(usuario).then((result) => {
 			let usuarioExistente = result[0];
-			let resultado = comprobarContrasenia(usuario, usuarioExistente).then((result) => {
+			comprobarContrasenia(usuario, usuarioExistente).then((result) => {
 				console.log(result);
 				let token = result;
 				return token;
 			});
-			console.log(resultado);
 		});
 	} catch (error) {
 		return error;

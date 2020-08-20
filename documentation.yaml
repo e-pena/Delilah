@@ -23,101 +23,103 @@ paths:
     get:
       tags:
         - Admin
-      summary: 'Muestra el listado de usuarios registrados'
+      summary: "Muestra el listado de usuarios registrados"
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
-        405:
-          description: 'Datos inválidos'
+                $ref: "#/components/schemas/Usuario"
+        403:
+          description: "Datos inválidos"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     post:
       tags:
+        - Usuario
         - Admin
-      summary: 'Agrega un usuario a la base de datos'
+      summary: "Agrega un usuario a la base de datos"
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /usuario/{usuarioId}:
     get:
       tags:
         - Admin
-      summary: 'Muestra el usuario por id'
+      summary: "Muestra el usuario por id"
       parameters:
         - name: usuarioId
           in: path
-          description: 'Usuario a conocer'
+          description: "Usuario a conocer"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Usuario no encontrado'
+          description: "Usuario no encontrado"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     put:
       tags:
         - Admin
-      summary: 'Modifica un usuario existente'
+        - Usuario
+      summary: "Modifica un usuario existente"
       parameters:
         - name: usuarioId
           in: path
-          description: 'Usuario a modificar'
+          description: "Usuario a modificar"
           required: true
           schema:
             type: integer
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Usuario no encontrado'
+          description: "Usuario no encontrado"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     delete:
       tags:
         - Admin
-      summary: 'Elimina un usuario'
+      summary: "Elimina un usuario"
       parameters:
         - name: token_admin
           in: header
@@ -126,119 +128,119 @@ paths:
             type: string
         - name: usuarioId
           in: path
-          description: 'Usuario a eliminar'
+          description: "Usuario a eliminar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Usuario no encontrado'
+          description: "Usuario no encontrado"
 
   /productos:
     get:
       tags:
         - Usuario
         - Admin
-      summary: 'Muestra el listado de productos disponibles'
+      summary: "Muestra el listado de productos disponibles"
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         405:
-          description: 'Datos inválidos'
+          description: "Datos inválidos"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     post:
       tags:
         - Admin
-      summary: 'Agrega un producto a la base de datos'
+      summary: "Agrega un producto a la base de datos"
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /productos/{productoId}:
     get:
       tags:
         - Usuario
         - Admin
-      summary: 'Muestra el producto por id'
+      summary: "Muestra el producto por id"
       parameters:
         - name: productoId
           in: path
-          description: 'Producto a conocer'
+          description: "Producto a conocer"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Producto no encontrado'
+          description: "Producto no encontrado"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     put:
       tags:
         - Admin
-      summary: 'Modifica un producto existente'
+      summary: "Modifica un producto existente"
       parameters:
         - name: productoId
           in: path
-          description: 'Producto a modificar'
+          description: "Producto a modificar"
           required: true
           schema:
             type: integer
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Producto no encontrado'
+          description: "Producto no encontrado"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     delete:
       tags:
         - Admin
-      summary: 'Elimina un producto'
+      summary: "Elimina un producto"
       parameters:
         - name: token_admin
           in: header
@@ -247,23 +249,23 @@ paths:
             type: string
         - name: productoId
           in: path
-          description: 'Producto a eliminar'
+          description: "Producto a eliminar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Producto no encontrado'
+          description: "Producto no encontrado"
 
   /pedidos:
     get:
       tags:
         - Admin
-      summary: 'Muestra el listado de pedidos en curso'
+      summary: "Muestra el listado de pedidos en curso"
       parameters:
         - name: token_admin
           in: header
@@ -272,49 +274,49 @@ paths:
             type: string
         - name: productoId
           in: path
-          description: 'Producto a eliminar'
+          description: "Producto a eliminar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         405:
-          description: 'Datos inválidos'
+          description: "Datos inválidos"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     post:
       tags:
         - Admin
         - Usuario
-      summary: 'Realiza un nuevo pedido'
+      summary: "Realiza un nuevo pedido"
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /pedidos/{pedidoId}:
     get:
       tags:
         - Admin
-      summary: 'Muestra el pedido por id'
+      summary: "Muestra el pedido por id"
       parameters:
         - name: token_admin
           in: header
@@ -323,60 +325,60 @@ paths:
             type: string
         - name: pedidoId
           in: path
-          description: 'Pedido a conocer'
+          description: "Pedido a conocer"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Pedido no encontrado'
+          description: "Pedido no encontrado"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     put:
       tags:
         - Admin
         - Usuario
-      summary: 'Modifica un pedido existente'
+      summary: "Modifica un pedido existente"
       parameters:
         - name: pedidoId
           in: path
-          description: 'Pedido a modificar'
+          description: "Pedido a modificar"
           required: true
           schema:
             type: integer
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Pedido no encontrado'
+          description: "Pedido no encontrado"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     delete:
       tags:
         - Admin
-      summary: 'Elimina un pedido'
+      summary: "Elimina un pedido"
       parameters:
         - name: token_admin
           in: header
@@ -385,17 +387,17 @@ paths:
             type: string
         - name: pedidoId
           in: path
-          description: 'Pedido a eliminar'
+          description: "Pedido a eliminar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
         400:
-          description: 'Id inválido'
+          description: "Id inválido"
         404:
-          description: 'Producto no encontrado'
+          description: "Producto no encontrado"
 
 components:
   schemas:
@@ -404,35 +406,35 @@ components:
       properties:
         id:
           type: integer
-          description: 'Identificación única'
+          description: "Identificación única"
           example: 1
         username:
           type: string
-          description: 'Nombre de usuario'
-          example: 'fmercury'
+          description: "Nombre de usuario"
+          example: "fmercury"
         nombre_completo:
           type: string
-          description: 'Nombre y apellido'
-          example: 'Freddie Mercury'
+          description: "Nombre y apellido"
+          example: "Freddie Mercury"
         email:
           type: string
-          description: 'Email'
-          example: 'fmer@mimail.com'
+          description: "Email"
+          example: "fmer@mimail.com"
         direccion:
           type: string
-          description: 'Dirección de entrega'
-          example: 'Rivadavia 6000 1ro A'
+          description: "Dirección de entrega"
+          example: "Rivadavia 6000 1ro A"
         telefono:
           type: string
-          description: 'Número de teléfono'
-          example: '4444-4444'
+          description: "Número de teléfono"
+          example: "4444-4444"
         password:
           type: string
-          description: 'Contraseña del usuario'
-          example: 'passWorD'
+          description: "Contraseña del usuario"
+          example: "passWorD"
         id_favoritos:
           type: array
-          description: 'Identificación de los productos favoritos'
+          description: "Identificación de los productos favoritos"
           example: [1, 4, 14]
           items:
             type: integer
@@ -449,36 +451,36 @@ components:
       properties:
         id:
           type: integer
-          description: 'Identificación única'
+          description: "Identificación única"
           example: 1
         estado:
           type: string
-          description: 'Estado del pedido'
-          example: 'Confirmado'
+          description: "Estado del pedido"
+          example: "Confirmado"
         hora:
           type: string
-          description: 'Hora en la que se realizó el pedido'
-          example: '11.24 PM'
+          description: "Hora en la que se realizó el pedido"
+          example: "11.24 PM"
         descripcion:
           type: string
-          description: 'Contenido del pedido'
-          example: '2x Hamburguesa doble 1x Gaseosa'
+          description: "Contenido del pedido"
+          example: "2x Hamburguesa doble 1x Gaseosa"
         pago:
           type: string
-          description: 'Forma de pago'
-          example: 'Efectivo'
+          description: "Forma de pago"
+          example: "Efectivo"
         costo:
           type: integer
-          description: 'Monto a abonar'
+          description: "Monto a abonar"
           example: 1000
         id_usuario:
           type: integer
-          description: 'Id del usuario que realizó el pedido'
-          example: '3'
+          description: "Id del usuario que realizó el pedido"
+          example: "3"
         direccion:
           type: string
-          description: 'Dirección de entrega'
-          example: 'Rivadavia 6000'
+          description: "Dirección de entrega"
+          example: "Rivadavia 6000"
       required:
         - id
         - estado
@@ -493,16 +495,16 @@ components:
       properties:
         id:
           type: integer
-          description: 'Identificación única'
+          description: "Identificación única"
           example: 1
         titulo:
           type: string
-          description: 'Nombre del producto'
-          example: 'Hamburguesa doble'
+          description: "Nombre del producto"
+          example: "Hamburguesa doble"
         precio:
           type: integer
-          description: 'Precio del producto'
-          example: '$400'
+          description: "Precio del producto"
+          example: "$400"
       required:
         - id
         - titulo

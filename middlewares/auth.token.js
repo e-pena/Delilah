@@ -9,7 +9,7 @@ function verificarTokenUsuario(req, res, next) {
 				if (error) {
 					return res.status(403).json({ message: 'Sin permisos' });
 				} else {
-					if (decoded.permisos_id == 1 || decoded.permisos_id == 2) {
+					if (decoded.permisos == 1 || decoded.permisos_id == 2) {
 						next();
 					} else {
 						return res.status(403).json({ message: 'Sin permisos' });
@@ -27,10 +27,11 @@ function verificarTokenAdmin(req, res, next) {
 		if (req.headers.authorization) {
 			let token = req.headers.authorization.split(' ')[1];
 			jwt.verify(token, claveSecreta, function (error, decoded) {
+				console.log(decoded);
 				if (error) {
 					return res.status(403).send({ message: 'Sin permisos' });
 				} else {
-					if (decoded.permisos_id == 2) {
+					if (decoded.permisos == 2) {
 						next();
 					} else {
 						return res.status(403).send({ message: 'Sin permisos' });
