@@ -27,7 +27,7 @@ route.get('/:id', middAuth.verificarTokenAdmin, async (req, res) => {
 	}
 });
 
-route.put('/:id', (req, res) => {
+route.put('/:id', middAuth.verificarTokenUsuario, (req, res) => {
 	try {
 		repoUsuarios.modificarUsuario(req.body, req.params.id).then((resultado) => {
 			if (resultado) {
@@ -41,7 +41,7 @@ route.put('/:id', (req, res) => {
 	}
 });
 
-route.delete('/:id', (req, res) => {
+route.delete('/:id', middAuth.verificarTokenAdmin, (req, res) => {
 	try {
 		repoUsuarios.borrarUsuario(req.params.id).then((resultado) => {
 			if (resultado) {
