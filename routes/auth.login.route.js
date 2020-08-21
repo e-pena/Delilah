@@ -17,11 +17,13 @@ route.post('/', async (req, res) => {
 					}
 					if (match) {
 						let payload = {
-							usuario: usuario.username,
-							direccion: usuario.direccion,
-							telefono: usuario.telefono,
-							permisos: usuario.permisos_id,
+							usuario: usuarioExistente.username,
+							direccion: usuarioExistente.direccion,
+							telefono: usuarioExistente.telefono,
+							permisos: usuarioExistente.permisos_id,
+							id: usuarioExistente.id,
 						};
+						console.log(payload);
 						jwt.sign(payload, middAuthToken.claveSecreta, function (error, token) {
 							if (error) {
 								res.status(500).json({ Error: message.error });

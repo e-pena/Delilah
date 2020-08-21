@@ -32,7 +32,7 @@ async function registrarUsuario(data) {
 			bcrypt.genSalt(10).then((salts) => {
 				bcrypt.hash(usuarioRegister.contrasenia, salts).then(async (hash) => {
 					usuarioRegister.contrasenia = hash;
-					nuevoUsuario = sql.query(
+					nuevoUsuario = await sql.query(
 						'INSERT INTO usuarios (username, nombre_completo, email, direccion, telefono, contrasenia, permisos_id) VALUES (:username, :nombre_completo, :email, :direccion, :telefono, :contrasenia, :permisos_id)',
 						{
 							replacements: {

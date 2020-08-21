@@ -9,13 +9,15 @@ function verificarTokenUsuario(req, res, next) {
 				if (error) {
 					return res.status(403).json({ message: 'Sin permisos' });
 				} else {
-					if (decoded.permisos == 1 || decoded.permisos_id == 2) {
+					if ((decoded.permisos == 1 && decoded.id == req.params.id) || decoded.permisos == 2) {
 						next();
 					} else {
 						return res.status(403).json({ message: 'Sin permisos' });
 					}
 				}
 			});
+		} else {
+			return res.status(403).json({ message: 'Sin permisos' });
 		}
 	} else {
 		next();
