@@ -3,7 +3,7 @@ CREATE TABLE usuarios (
     username VARCHAR (255) NOT NULL UNIQUE,
     nombre_completo VARCHAR (255) NOT NULL,
     email VARCHAR (255) NOT NULL UNIQUE,
-    direccion VARCHAR (510) NOT NULL,
+    direccion VARCHAR (255) NOT NULL,
     telefono VARCHAR (255) NOT NULL,
     contrasenia VARCHAR (255) NOT NULL,
     permisos_id INT NOT NULL, 
