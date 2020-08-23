@@ -20,9 +20,9 @@ async function comprobarProducto(data) {
 	}
 }
 
-async function comprobarUsuarioYProducto(data) {
+async function comprobarUsuarioYProducto(data, idUsuario) {
 	try {
-		let existeUsuario = await repoUsuarios.getUsersById(data.usuario_id);
+		let existeUsuario = await repoUsuarios.getUsersById(idUsuario);
 		let productos = data.idProductos.split(',');
 		let existeProducto = await comprobarProducto(productos);
 		if (
@@ -33,7 +33,7 @@ async function comprobarUsuarioYProducto(data) {
 			data.pago_id <= 2 &&
 			data.pago_id >= 0
 		) {
-			await repoPedidos.agregarNuevoPedido(data, existeProducto);
+			await repoPedidos.agregarNuevoPedido(data, idUsuario, existeProducto);
 			return data;
 		} else {
 			throw new Error('El pedido no se puede realizar');

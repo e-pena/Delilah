@@ -15,13 +15,13 @@ route.post('/', async (req, res) => {
 		) {
 			repoUsuarios.registrarUsuario(usuario).then((result) => {
 				if (result) {
-					res.status(200).json(result);
+					res.status(201).json(result);
 				} else {
-					res.status(500).json({ Mensaje: 'El username ya existe' });
+					res.status(409).json({ Mensaje: 'El username ya existe' });
 				}
 			});
 		} else {
-			res.status(500).json({ Mensaje: 'Información incompleta' });
+			res.status(400).json({ Mensaje: 'Información incompleta' });
 		}
 	} catch (error) {
 		res.status(500).json({ Error: error.message });

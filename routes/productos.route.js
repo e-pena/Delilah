@@ -4,7 +4,7 @@ const repoProductos = require('../repositories/productos.repo');
 const servicesProductos = require('../services/productos.service');
 const mwAuthToken = require('../middlewares/auth.token');
 
-route.get('/', async (req, res) => {
+route.get('/', mwAuthToken.verificarTokenUsuario, async (req, res) => {
 	try {
 		repoProductos.getProducts().then((resultado) => {
 			console.log(resultado);
@@ -15,7 +15,7 @@ route.get('/', async (req, res) => {
 	}
 });
 
-route.get('/:id', async (req, res) => {
+route.get('/:id', mwAuthToken.verificarTokenUsuario, async (req, res) => {
 	try {
 		repoProductos.getProductsById(req.params.id).then((resultado) => {
 			if (resultado) {
@@ -33,9 +33,9 @@ route.post('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 	try {
 		servicesProductos.revisarDatosProductoNuevo(req.body).then((result) => {
 			if (result) {
-				res.status(200).json({ Mensaje: 'Producto creado' });
+				res.status(201).json({ Mensaje: 'Producto creado' });
 			} else {
-				res.status(500).json({ Error: 'Algo falló' });
+				res.status(500).json({ Error: 'No se pudo crear el pedido' });
 			}
 		});
 	} catch (error) {
@@ -43,7 +43,7 @@ route.post('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 	}
 });
 
-route.put('/:id', mwAuthToken.verificarTokenAdmin, (req, res) => {
+route.put('/:id', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 	try {
 		repoProductos.modificarProducto(req.body, req.params.id).then((resultado) => {
 			if (resultado) {
@@ -57,7 +57,7 @@ route.put('/:id', mwAuthToken.verificarTokenAdmin, (req, res) => {
 	}
 });
 
-route.delete('/:id', mwAuthToken.verificarTokenAdmin, (req, res) => {
+route.delete('/:id', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 	try {
 		repoProductos.borrarProducto(req.params.id).then((resultado) => {
 			if (resultado) {

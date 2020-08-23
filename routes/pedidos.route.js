@@ -1,27 +1,40 @@
 const express = require('express');
 const route = express.Router();
 const repoPedidos = require('../repositories/pedidos.repo');
-const servicesPedidos = require('../services/pedidos.service');
 const mwAuthToken = require('../middlewares/auth.token');
 
-route.post('/', async (req, res) => {
-	try {
-		servicesPedidos.comprobarUsuarioYProducto(req.body).then((result) => {
-			if (result) {
-				res.status(200).json({ Mensaje: 'Pedido creado' });
-			} else {
-				res.status(500).json({ Error: 'No se pudo crear el pedido' });
-			}
-		});
-	} catch (error) {
-		res.status(500).json({ error: error.message });
-	}
-});
-
-route.get('/', async (req, res) => {
+route.get('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 	try {
 		repoPedidos.getPedidos().then((resultado) => {
 			res.status(200).json(resultado);
+		});
+	} catch (error) {
+		res.status(500).json({ Error: error.message });
+	}
+});
+
+route.patch('/:id', mwAuthToken.verificarTokenAdmin, async (req, res) => {
+	try {
+		repoPedidos.modificarEstadoDePedido(req.body, req.params.id).then((resultado) => {
+			if (resultado) {
+				res.status(200).json({ Mensaje: 'Pedido modificado' });
+			} else {
+				res.status(404).json({ Error: 'Pedido no encontrado' });
+			}
+		});
+	} catch (error) {
+		res.status(500).json({ Error: error.message });
+	}
+});
+
+route.delete('/:id', mwAuthToken.verificarTokenAdmin, async (req, res) => {
+	try {
+		repoPedidos.borrarPedido(req.params.id).then((resultado) => {
+			if (resultado) {
+				res.status(200).json({ Mensaje: 'Pedido borrado' });
+			} else {
+				res.status(404).json({ Error: 'Pedido no encontrado' });
+			}
 		});
 	} catch (error) {
 		res.status(500).json({ Error: error.message });

@@ -1,10 +1,11 @@
 const express = require('express');
 const route = express.Router();
 const repoUsuarios = require('../repositories/usuarios.repo');
+const repoPedidos = require('../repositories/pedidos.repo');
+const servicesPedidos = require('../services/pedidos.service');
 const mwAuthToken = require('../middlewares/auth.token');
 
 route.get('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
-	// Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiZXBlbmEiLCJkaXJlY2Npb24iOiJDYWxsZSBGYWxzYSAxMjMiLCJ0ZWxlZm9ubyI6IjEyMzQ1Njc4IiwicGVybWlzb3MiOjIsImlhdCI6MTU5Nzk5MTE0Mn0.S6IdVUsFM8-GqY2zCnwPQVO6EdZB4Rg6P684Blo_xSg
 	try {
 		repoUsuarios.getUsers().then((resultados) => res.status(200).json(resultados[0]));
 	} catch (error) {
@@ -13,7 +14,6 @@ route.get('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 });
 
 route.get('/:id', mwAuthToken.verificarTokenUsuario, async (req, res) => {
-	// Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiZXBlbmEiLCJkaXJlY2Npb24iOiJDYWxsZSBGYWxzYSAxMjMiLCJ0ZWxlZm9ubyI6IjEyMzQ1Njc4IiwicGVybWlzb3MiOjIsImlhdCI6MTU5Nzk5MTE0Mn0.S6IdVUsFM8-GqY2zCnwPQVO6EdZB4Rg6P684Blo_xSg
 	try {
 		repoUsuarios.getUsersById(req.params.id).then((resultados) => {
 			if (resultados) {
@@ -52,6 +52,30 @@ route.delete('/:id', mwAuthToken.verificarTokenUsuario, (req, res) => {
 		});
 	} catch (error) {
 		res.status(500).json({ Error: error.message });
+	}
+});
+
+route.get('/:id/pedidos', mwAuthToken.verificarTokenUsuario, async (req, res) => {
+	try {
+		repoPedidos.getPedidosdeUsuarioPorId(req.params.id).then((resultado) => {
+			res.status(200).json(resultado);
+		});
+	} catch (error) {
+		res.status(500).json({ Error: error.message });
+	}
+});
+
+route.post('/:id/pedidos', mwAuthToken.verificarTokenUsuario, async (req, res) => {
+	try {
+		servicesPedidos.comprobarUsuarioYProducto(req.body, req.params.id).then((result) => {
+			if (result) {
+				res.status(201).json({ Mensaje: 'Pedido creado' });
+			} else {
+				res.status(500).json({ Error: 'No se pudo crear el pedido' });
+			}
+		});
+	} catch (error) {
+		res.status(500).json({ error: error.message });
 	}
 });
 

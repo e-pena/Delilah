@@ -32,16 +32,15 @@ route.post('/', async (req, res) => {
 							}
 						});
 					} else {
-						return res.status(500).json({ message: 'Contraseña incorrecta' });
+						return res.status(401).json({ message: 'Contraseña incorrecta' });
 					}
 				});
 			} else {
 				res.status(404).json('No se encontró el usuario');
 			}
 		});
-		// serviceUsuarios.login(usuario).then((result) => res.status(200).json(result));
 	} catch (error) {
-		res.status(404).json({ error: error.message });
+		res.status(500).json({ error: error.message });
 	}
 });
 
