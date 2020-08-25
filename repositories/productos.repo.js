@@ -2,7 +2,7 @@ const sql = require('../db/connection');
 
 async function getProducts() {
 	try {
-		let [resultados] = await sql.query('SELECT * FROM productos', { type: sql.QueryTypes.SELECT });
+		let resultados = await sql.query('SELECT * FROM productos', { type: sql.QueryTypes.SELECT });
 		return resultados;
 	} catch (error) {
 		return error;
