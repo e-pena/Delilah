@@ -43,8 +43,8 @@ async function getProductsByTitle(data) {
 
 async function agregarNuevoProducto(data) {
 	try {
-		await sql.query('INSERT INTO productos (titulo, precio) VALUES (:titulo, :precio)', {
-			replacements: { titulo: data.titulo, precio: data.precio },
+		await sql.query('INSERT INTO productos (titulo, precio, imagen) VALUES (:titulo, :precio, :imagen)', {
+			replacements: { titulo: data.titulo, precio: data.precio, imagen: data.imagen },
 			type: sql.QueryTypes.SELECT,
 		});
 	} catch (error) {
@@ -58,10 +58,11 @@ async function modificarProducto(data, id) {
 		if (comprobacionDeProducto) {
 			let comprobacionTitulo = await getProductsByTitle(data);
 			if (comprobacionTitulo) {
-				await sql.query('UPDATE productos SET titulo = :titulo, precio = :precio WHERE id = :id', {
+				await sql.query('UPDATE productos SET titulo = :titulo, precio = :precio, imagen = :imagen WHERE id = :id', {
 					replacements: {
 						titulo: data.titulo,
 						precio: data.precio,
+						imagen: data.imagen,
 						id: id,
 					},
 					type: sql.QueryTypes.UPDATE,

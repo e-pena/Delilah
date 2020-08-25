@@ -20,33 +20,33 @@ paths:
       tags:
         - Admin
         - Usuario
-      summary: 'Registra un nuevo usuario o administrador'
+      summary: "Registra un nuevo usuario o administrador"
       responses:
         201:
-          description: 'Registro realizado'
+          description: "Registro realizado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         400:
-          description: 'Información incompleta'
+          description: "Información incompleta"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         409:
-          description: 'El username ya existe'
+          description: "El username ya existe"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
                 type: string
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       requestBody:
         content:
           application/json:
@@ -55,31 +55,31 @@ paths:
               properties:
                 username:
                   type: string
-                  description: 'Nombre de usuario'
-                  example: 'jperez'
+                  description: "Nombre de usuario"
+                  example: "jperez"
                 nombre_completo:
                   type: string
-                  description: 'Nombre y apellido'
-                  example: 'Juan Perez'
+                  description: "Nombre y apellido"
+                  example: "Juan Perez"
                 email:
                   type: string
-                  description: 'Email'
-                  example: 'jperez@mimail.com'
+                  description: "Email"
+                  example: "jperez@mimail.com"
                 direccion:
                   type: string
-                  description: 'Dirección de entrega'
-                  example: 'Rivadavia 6000 1ro A'
+                  description: "Dirección de entrega"
+                  example: "Rivadavia 6000 1ro A"
                 telefono:
                   type: string
-                  description: 'Número de teléfono'
-                  example: '4444-4444'
+                  description: "Número de teléfono"
+                  example: "4444-4444"
                 contrasenia:
                   type: string
-                  description: 'Contraseña del usuario'
-                  example: 'passWorD'
+                  description: "Contraseña del usuario"
+                  example: "passWorD"
                 permisos_id:
                   type: integer
-                  description: 'Permisos de usuario o administrador'
+                  description: "Permisos de usuario o administrador"
                   example: 1
               required:
                 - username
@@ -94,10 +94,10 @@ paths:
       tags:
         - Admin
         - Usuario
-      summary: 'Loguea un usuario o administrador'
+      summary: "Loguea un usuario o administrador"
       responses:
         200:
-          description: 'Login realizado'
+          description: "Login realizado"
           content:
             application/json:
               schema:
@@ -106,23 +106,23 @@ paths:
                   token:
                     type: string
         401:
-          description: 'Contraseña incorrecta'
+          description: "Contraseña incorrecta"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'No se encontró usuario'
+          description: "No se encontró usuario"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       requestBody:
         content:
           application/json:
@@ -131,12 +131,12 @@ paths:
               properties:
                 username:
                   type: string
-                  description: 'Nombre de usuario'
-                  example: 'jperez'
+                  description: "Nombre de usuario"
+                  example: "jperez"
                 contrasenia:
                   type: string
-                  description: 'Contraseña del usuario'
-                  example: 'passWorD'
+                  description: "Contraseña del usuario"
+                  example: "passWorD"
               required:
                 - username
                 - contrasenia
@@ -144,7 +144,7 @@ paths:
     get:
       tags:
         - Admin
-      summary: 'Muestra el listado de usuarios registrados'
+      summary: "Muestra el listado de usuarios registrados"
       parameters:
         - name: token
           in: header
@@ -153,29 +153,29 @@ paths:
             type: string
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
   /usuarios/{usuarioId}:
     get:
       tags:
         - Admin
         - Usuario
-      summary: 'Muestra el usuario por id'
+      summary: "Muestra el usuario por id"
       parameters:
         - name: token
           in: header
@@ -184,40 +184,40 @@ paths:
             type: string
         - name: usuarioId
           in: path
-          description: 'Usuario a conocer'
+          description: "Usuario a conocer"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Usuario no encontrado'
+          description: "Usuario no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     put:
       tags:
         - Admin
         - Usuario
-      summary: 'Modifica un usuario existente'
+      summary: "Modifica un usuario existente"
       parameters:
         - name: token
           in: header
@@ -226,35 +226,35 @@ paths:
             type: string
         - name: usuarioId
           in: path
-          description: 'Usuario a modificar'
+          description: "Usuario a modificar"
           required: true
           schema:
             type: integer
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Usuario no encontrado'
+          description: "Usuario no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       requestBody:
         content:
           application/json:
@@ -263,24 +263,24 @@ paths:
               properties:
                 nombre_completo:
                   type: string
-                  description: 'Nombre y apellido'
-                  example: 'Juan Perez'
+                  description: "Nombre y apellido"
+                  example: "Juan Perez"
                 email:
                   type: string
-                  description: 'Email'
-                  example: 'jperez@mimail.com'
+                  description: "Email"
+                  example: "jperez@mimail.com"
                 direccion:
                   type: string
-                  description: 'Dirección de entrega'
-                  example: 'Rivadavia 6000 1ro A'
+                  description: "Dirección de entrega"
+                  example: "Rivadavia 6000 1ro A"
                 telefono:
                   type: string
-                  description: 'Número de teléfono'
-                  example: '4444-4444'
+                  description: "Número de teléfono"
+                  example: "4444-4444"
                 contrasenia:
                   type: string
-                  description: 'Contraseña del usuario'
-                  example: 'passWorD'
+                  description: "Contraseña del usuario"
+                  example: "passWorD"
               required:
                 - nombre_completo
                 - email
@@ -291,7 +291,7 @@ paths:
       tags:
         - Admin
         - Usuario
-      summary: 'Elimina un usuario'
+      summary: "Elimina un usuario"
       parameters:
         - name: token
           in: header
@@ -300,41 +300,41 @@ paths:
             type: string
         - name: usuarioId
           in: path
-          description: 'Usuario a eliminar'
+          description: "Usuario a eliminar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Usuario borrado'
+          description: "Usuario borrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
+                $ref: "#/components/schemas/Usuario"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Usuario no encontrado'
+          description: "Usuario no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
   /usuarios/{usuarioId}/pedidos:
     get:
       tags:
         - Admin
         - Usuario
-      summary: 'Muestra pedidos de un usuario'
+      summary: "Muestra pedidos de un usuario"
       parameters:
         - name: token
           in: header
@@ -343,40 +343,40 @@ paths:
             type: string
         - name: usuarioId
           in: path
-          description: 'Usuario cuyos pedidos se quieren conocer'
+          description: "Usuario cuyos pedidos se quieren conocer"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Usuario no encontrado'
+          description: "Usuario no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
     post:
       tags:
         - Usuario
-      summary: 'Crea un pedido nuevo'
+      summary: "Crea un pedido nuevo"
       parameters:
         - name: token
           in: header
@@ -385,29 +385,29 @@ paths:
             type: string
         - name: usuarioId
           in: path
-          description: 'Usuario que realiza el pedido nuevo'
+          description: "Usuario que realiza el pedido nuevo"
           required: true
           schema:
             type: integer
       responses:
         201:
-          description: 'Pedido creado'
+          description: "Pedido creado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Internal Server Error'
+          description: "Internal Server Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       requestBody:
         content:
           application/json:
@@ -416,17 +416,17 @@ paths:
               properties:
                 estado_id:
                   type: integer
-                  description: 'Id del estado del pedido'
+                  description: "Id del estado del pedido"
                   example: 1
                 idProductos:
                   type: array
-                  description: 'Id de productos'
+                  description: "Id de productos"
                   items:
                     type: integer
-                  example: 'jperez@mimail.com'
+                  example: "jperez@mimail.com"
                 pago_id:
                   type: integer
-                  description: 'Id de forma de pago'
+                  description: "Id de forma de pago"
                   example: 1
 
   /productos:
@@ -434,7 +434,7 @@ paths:
       tags:
         - Usuario
         - Admin
-      summary: 'Muestra el listado de productos disponibles'
+      summary: "Muestra el listado de productos disponibles"
       parameters:
         - name: token
           in: header
@@ -443,27 +443,27 @@ paths:
             type: string
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     post:
       tags:
         - Admin
-      summary: 'Agrega un producto'
+      summary: "Agrega un producto"
       parameters:
         - name: token
           in: header
@@ -472,23 +472,23 @@ paths:
             type: string
       responses:
         201:
-          description: 'Creado exitosamente'
+          description: "Creado exitosamente"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       requestBody:
         content:
           application/json:
@@ -497,19 +497,23 @@ paths:
               properties:
                 titulo:
                   type: string
-                  description: 'Título del producto'
+                  description: "Título del producto"
                   example: 1
                 precio:
                   type: integer
-                  description: 'Precio del producto'
+                  description: "Precio del producto"
                   example: 300
+                imagen:
+                  type: string
+                  description: "URL de imagen"
+                  example: "https://t2.rg.ltmcdn.com/es/images/0/8/9/img_pan_para_hamburguesa_28980_orig.jpg"
 
   /productos/{productoId}:
     get:
       tags:
         - Usuario
         - Admin
-      summary: 'Muestra el producto por id'
+      summary: "Muestra el producto por id"
       parameters:
         - name: token
           in: header
@@ -518,33 +522,33 @@ paths:
             type: string
         - name: productoId
           in: path
-          description: 'Producto a conocer'
+          description: "Producto a conocer"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         404:
-          description: 'Producto no encontrado'
+          description: "Producto no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     put:
       tags:
         - Admin
-      summary: 'Modifica un producto existente'
+      summary: "Modifica un producto existente"
       parameters:
         - name: token
           in: header
@@ -553,35 +557,35 @@ paths:
             type: string
         - name: productoId
           in: path
-          description: 'Producto a modificar'
+          description: "Producto a modificar"
           required: true
           schema:
             type: integer
       responses:
         201:
-          description: 'Producto modificado'
+          description: "Producto modificado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Producto no encontrado'
+          description: "Producto no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       requestBody:
         content:
           application/json:
@@ -590,16 +594,20 @@ paths:
               properties:
                 titulo:
                   type: string
-                  description: 'Título del producto'
+                  description: "Título del producto"
                   example: 1
                 precio:
                   type: integer
-                  description: 'Precio del producto'
+                  description: "Precio del producto"
                   example: 300
+                imagen:
+                  type: string
+                  description: "URL de imagen"
+                  example: "https://t2.rg.ltmcdn.com/es/images/0/8/9/img_pan_para_hamburguesa_28980_orig.jpg"
     delete:
       tags:
         - Admin
-      summary: 'Elimina un producto'
+      summary: "Elimina un producto"
       parameters:
         - name: token
           in: header
@@ -608,41 +616,41 @@ paths:
             type: string
         - name: productoId
           in: path
-          description: 'Producto a eliminar'
+          description: "Producto a eliminar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Producto borrado'
+          description: "Producto borrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Producto'
+                $ref: "#/components/schemas/Producto"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Producto no encontrado'
+          description: "Producto no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 
   /pedidos:
     get:
       tags:
         - Admin
-      summary: 'Muestra el listado de pedidos en curso'
+      summary: "Muestra el listado de pedidos en curso"
       parameters:
         - name: token
           in: header
@@ -651,28 +659,28 @@ paths:
             type: string
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
   /pedidos/{pedidoId}:
     delete:
       tags:
         - Admin
-      summary: 'Elimina un pedido'
+      summary: "Elimina un pedido"
       parameters:
         - name: token
           in: header
@@ -681,39 +689,39 @@ paths:
             type: string
         - name: pedidoId
           in: path
-          description: 'Pedido a eliminar'
+          description: "Pedido a eliminar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Pedido no encontrado'
+          description: "Pedido no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
     patch:
       tags:
         - Admin
-      summary: 'Modifica el estado de un pedido'
+      summary: "Modifica el estado de un pedido"
       parameters:
         - name: token
           in: header
@@ -722,35 +730,35 @@ paths:
             type: string
         - name: pedidoId
           in: path
-          description: 'Pedido a modificar'
+          description: "Pedido a modificar"
           required: true
           schema:
             type: integer
       responses:
         200:
-          description: 'Operación exitosa'
+          description: "Operación exitosa"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: "#/components/schemas/Pedido"
         403:
-          description: 'Sin permisos'
+          description: "Sin permisos"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         404:
-          description: 'Pedido no encontrado'
+          description: "Pedido no encontrado"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         500:
-          description: 'Error'
+          description: "Error"
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       requestBody:
         content:
           application/json:
@@ -759,7 +767,7 @@ paths:
               properties:
                 estado_id:
                   type: integer
-                  description: 'Id del estado del pedido'
+                  description: "Id del estado del pedido"
                   example: 5
 
 components:
@@ -769,31 +777,31 @@ components:
       properties:
         username:
           type: string
-          description: 'Nombre de usuario'
-          example: 'jperez'
+          description: "Nombre de usuario"
+          example: "jperez"
         nombre_completo:
           type: string
-          description: 'Nombre y apellido'
-          example: 'Juan Perez'
+          description: "Nombre y apellido"
+          example: "Juan Perez"
         email:
           type: string
-          description: 'Email'
-          example: 'jperez@mimail.com'
+          description: "Email"
+          example: "jperez@mimail.com"
         direccion:
           type: string
-          description: 'Dirección de entrega'
-          example: 'Rivadavia 6000 1ro A'
+          description: "Dirección de entrega"
+          example: "Rivadavia 6000 1ro A"
         telefono:
           type: string
-          description: 'Número de teléfono'
-          example: '4444-4444'
+          description: "Número de teléfono"
+          example: "4444-4444"
         contrasenia:
           type: string
-          description: 'Contraseña del usuario'
-          example: 'passWorD'
+          description: "Contraseña del usuario"
+          example: "passWorD"
         permisos_id:
           type: integer
-          description: 'Permisos de usuario o administrador'
+          description: "Permisos de usuario o administrador"
           example: 1
       required:
         - username
@@ -808,59 +816,64 @@ components:
       properties:
         id:
           type: integer
-          description: 'Identificación única'
+          description: "Identificación única"
           example: 1
         descripcion:
           type: string
-          description: 'Contenido del pedido'
-          example: '2x Hamburguesa doble 1x Gaseosa'
+          description: "Contenido del pedido"
+          example: "2x Hamburguesa doble 1x Gaseosa"
         hora:
           type: string
-          description: 'Hora en la que se realizó el pedido'
-          example: '11.24 PM'
+          description: "Hora en la que se realizó el pedido"
+          example: "11.24 PM"
         costo:
           type: integer
-          description: 'Monto a abonar'
+          description: "Monto a abonar"
           example: 1000
         estado:
           type: string
-          description: 'Estado del pedido'
-          example: 'Nuevo'
+          description: "Estado del pedido"
+          example: "Nuevo"
         forma_pago:
           type: string
-          description: 'Forma de pago'
-          example: 'Efectivo'
+          description: "Forma de pago"
+          example: "Efectivo"
         usuario_id:
           type: integer
-          description: 'Id del usuario que realizó el pedido'
+          description: "Id del usuario que realizó el pedido"
           example: 3
         datosProducto:
           type: array
-          description: 'Detalle de los productos'
+          description: "Detalle de los productos"
           items:
             type: object
             properties:
               producto_id:
                 type: integer
-                description: 'Id del producto'
+                description: "Id del producto"
                 example: 3
               titulo:
                 type: string
-                description: 'Título del producto'
-                example: 'Hamburguesa'
+                description: "Título del producto"
+                example: "Hamburguesa"
               precio:
                 type: integer
-                description: 'Precio del producto'
+                description: "Precio del producto"
                 example: 500
+              imagen:
+                type: string
+                description: "URL de imagen"
+                example: "https://t2.rg.ltmcdn.com/es/images/0/8/9/img_pan_para_hamburguesa_28980_orig.jpg"
               pedido_id:
                 type: integer
-                description: 'Id del pedido'
+                description: "Id del pedido"
                 example: 3
             required:
-              - id
-              - descripcion
-              - hora
-              - costo
+              - producto_id
+              - titulo
+              - precio
+              - imagen
+              - pedido_id
       required:
         - id
         - descripcion
@@ -874,20 +887,25 @@ components:
       properties:
         id:
           type: integer
-          description: 'Identificación única'
+          description: "Identificación única"
           example: 1
         titulo:
           type: string
-          description: 'Nombre del producto'
-          example: 'Hamburguesa doble'
+          description: "Nombre del producto"
+          example: "Hamburguesa doble"
         precio:
           type: integer
-          description: 'Precio del producto'
+          description: "Precio del producto"
           example: 400
+        imagen:
+          type: string
+          description: "URL de imagen"
+          example: "https://t2.rg.ltmcdn.com/es/images/0/8/9/img_pan_para_hamburguesa_28980_orig.jpg"
       required:
         - id
         - titulo
         - precio
+        - imagen
     Error:
       type: object
       properties:

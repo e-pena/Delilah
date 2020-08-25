@@ -72,7 +72,7 @@ async function getPedidos() {
 			{ type: sql.QueryTypes.SELECT }
 		);
 		let productos = await sql.query(
-			`SELECT productos.id AS producto_id, productos.titulo, productos.precio, productoPedido.pedido_id FROM productoPedido JOIN productos ON productoPedido.producto_id = productos.id JOIN pedidos ON productoPedido.pedido_id = pedidos.id`,
+			`SELECT productos.id AS producto_id, productos.titulo, productos.precio, productos.imagen, productoPedido.pedido_id FROM productoPedido JOIN productos ON productoPedido.producto_id = productos.id JOIN pedidos ON productoPedido.pedido_id = pedidos.id`,
 			{ type: sql.QueryTypes.SELECT }
 		);
 		let resultados = [];
@@ -101,7 +101,7 @@ async function getPedidosdeUsuarioPorId(id) {
 			{ replacements: [id], type: sql.QueryTypes.SELECT }
 		);
 		let productos = await sql.query(
-			`SELECT productos.id AS producto_id, productos.titulo, productos.precio, productoPedido.pedido_id FROM productoPedido JOIN productos ON productoPedido.producto_id = productos.id JOIN pedidos ON productoPedido.pedido_id = pedidos.id`,
+			`SELECT productos.id AS producto_id, productos.titulo, productos.precio, productos.imagen, productoPedido.pedido_id FROM productoPedido JOIN productos ON productoPedido.producto_id = productos.id JOIN pedidos ON productoPedido.pedido_id = pedidos.id`,
 			{ type: sql.QueryTypes.SELECT }
 		);
 		let resultados = [];
