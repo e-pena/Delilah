@@ -31,7 +31,7 @@ route.put('/:id', mwAuthToken.verificarTokenUsuario, (req, res) => {
 	try {
 		repoUsuarios.modificarUsuario(req.body, req.params.id).then((resultado) => {
 			if (resultado) {
-				res.status(200).json(resultado);
+				res.status(201).json(resultado);
 			} else {
 				res.status(404).json({ Error: 'Usuario no encontrado' });
 			}
@@ -57,8 +57,12 @@ route.delete('/:id', mwAuthToken.verificarTokenUsuario, (req, res) => {
 
 route.get('/:id/pedidos', mwAuthToken.verificarTokenUsuario, async (req, res) => {
 	try {
-		repoPedidos.getPedidosdeUsuarioPorId(req.params.id).then((resultado) => {
-			res.status(200).json(resultado);
+		repoPedidos.getPedidosdeUsuarioPorId(req.params.id).then((result) => {
+			if (result) {
+				res.status(200).json(result);
+			} else {
+				res.status(404).json({ Error: 'Usuario no encontrado' });
+			}
 		});
 	} catch (error) {
 		res.status(500).json({ Error: error.message });

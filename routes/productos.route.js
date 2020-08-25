@@ -7,7 +7,6 @@ const mwAuthToken = require('../middlewares/auth.token');
 route.get('/', mwAuthToken.verificarTokenUsuario, async (req, res) => {
 	try {
 		repoProductos.getProducts().then((resultado) => {
-			console.log(resultado);
 			res.status(200).json(resultado);
 		});
 	} catch (error) {
@@ -47,7 +46,7 @@ route.put('/:id', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 	try {
 		repoProductos.modificarProducto(req.body, req.params.id).then((resultado) => {
 			if (resultado) {
-				res.status(200).json({ Mensaje: 'Producto modificado' });
+				res.status(201).json({ Mensaje: 'Producto modificado' });
 			} else {
 				res.status(404).json({ Error: 'Producto no encontrado o titulo ya existente' });
 			}
