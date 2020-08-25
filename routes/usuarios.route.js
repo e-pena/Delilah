@@ -7,7 +7,7 @@ const mwAuthToken = require('../middlewares/auth.token');
 
 route.get('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 	try {
-		repoUsuarios.getUsers().then((resultados) => res.status(200).json(resultados[0]));
+		repoUsuarios.getUsers().then((resultados) => res.status(200).json(resultados));
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}
