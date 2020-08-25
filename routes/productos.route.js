@@ -34,7 +34,7 @@ route.post('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
 			if (result) {
 				res.status(201).json({ Mensaje: 'Producto creado' });
 			} else {
-				res.status(500).json({ Error: 'No se pudo crear el pedido' });
+				res.status(500).json({ Error: 'No se pudo crear el producto' });
 			}
 		});
 	} catch (error) {
