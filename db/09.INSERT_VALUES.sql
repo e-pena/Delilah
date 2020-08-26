@@ -1,0 +1,1 @@
+INSERT INTO pago (`forma_pago`) VALUES ('Efectivo'), ('Tarjeta')

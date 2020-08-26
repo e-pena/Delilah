@@ -1,0 +1,1 @@
+INSERT INTO permisos (`permisos`) VALUES ('Usuario'), ('Admin')
