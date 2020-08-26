@@ -419,11 +419,9 @@ paths:
                   description: "Id del estado del pedido"
                   example: 1
                 idProductos:
-                  type: array
+                  type: string
                   description: "Id de productos"
-                  items:
-                    type: integer
-                  example: "jperez@mimail.com"
+                  example: "10, 15, 20"
                 pago_id:
                   type: integer
                   description: "Id de forma de pago"

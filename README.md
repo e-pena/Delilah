@@ -15,4 +15,4 @@
 En el archivo _documentation.yaml_ podrás encontrar todos los endpoints disponibles, con ejemplos incluidos.
 
 Para facilitar el testeo, hacer click en el siguiente link:
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/057604fe2043313ff7af)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/59835ad1ff0174bd287a)
