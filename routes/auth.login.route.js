@@ -4,6 +4,7 @@ const repoUsuarios = require('../repositories/usuarios.repo');
 const middAuthToken = require('../middlewares/auth.token');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 route.post('/', async (req, res) => {
 	let usuario = req.body;
@@ -24,7 +25,7 @@ route.post('/', async (req, res) => {
 							id: usuarioExistente.id,
 						};
 						console.log(payload);
-						jwt.sign(payload, middAuthToken.claveSecreta, function (error, token) {
+						jwt.sign(payload, process.env.JWT_KEY, function (error, token) {
 							if (error) {
 								res.status(500).json({ Error: message.error });
 							} else {

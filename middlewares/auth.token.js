@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const claveSecreta = 'asad92929nnadasaappqwd';
+require('dotenv').config();
 
 function verificarTokenUsuario(req, res, next) {
 	if (req.path != '/login' && req.path != '/register') {
 		if (req.headers.authorization) {
 			let token = req.headers.authorization.split(' ')[1];
-			jwt.verify(token, claveSecreta, function (error, decoded) {
+			jwt.verify(token, process.env.JWT_KEY, function (error, decoded) {
 				if (error) {
 					return res.status(403).json({ message: 'Sin permisos' });
 				} else {
@@ -32,7 +32,7 @@ function verificarTokenAdmin(req, res, next) {
 	if (req.path != '/login' && req.path != '/register') {
 		if (req.headers.authorization) {
 			let token = req.headers.authorization.split(' ')[1];
-			jwt.verify(token, claveSecreta, function (error, decoded) {
+			jwt.verify(token, process.env.JWT_KEY, function (error, decoded) {
 				console.log(decoded);
 				if (error) {
 					return res.status(403).send({ message: 'Sin permisos' });
@@ -50,4 +50,4 @@ function verificarTokenAdmin(req, res, next) {
 	}
 }
 
-module.exports = { verificarTokenAdmin, verificarTokenUsuario, claveSecreta };
+module.exports = { verificarTokenAdmin, verificarTokenUsuario };
