@@ -7,6 +7,7 @@ const routeAuthLogin = require('./routes/auth.login.route');
 const routeAuthRegister = require('./routes/auth.register.route');
 
 server.use(express.json());
+server.use(express.static('./public'));
 
 server.use('/usuarios', routeUsuarios);
 server.use('/productos', routeProductos);

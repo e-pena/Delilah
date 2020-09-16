@@ -1,0 +1,23 @@
+body {
+	background-image: url('../images/fondo.jpg');
+	background-color: transparent;
+	width: 100vw;
+}
+
+#contenedor-login {
+	display: flex;
+	justify-content: center;
+	margin-top: 5em;
+}
+
+#registro {
+	padding: 1em;
+}
+
+#login {
+	width: 25em;
+}
+
+.oculto {
+	display: none;
+}
