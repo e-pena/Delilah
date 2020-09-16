@@ -3,6 +3,11 @@ const BTN_LOGIN = document.querySelector('#btn-login');
 const USUARIO_LOGIN = document.querySelector('#usuario-login');
 const CONTRASENIA_LOGIN = document.querySelector('#contrasenia-login');
 const MODAL_LOGIN = document.querySelector('#modal-login');
+const LINK_ADMIN = document.querySelector('#link-admin');
+const LINK_REGISTRO = document.querySelector('#link-registro');
+const LINK_USUARIO_DATOS = document.querySelector('#link-usuario-datos');
+const LINK_USUARIO_PEDIDOS = document.querySelector('#link-usuario-pedidos');
+const LINK_USUARIO_CARRITO = document.querySelector('#link-usuario-carrito');
 
 // data-toggle="modal" data-target="#login-modal"
 
@@ -30,7 +35,17 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 			})
 			.then((data) => {
 				if (data) {
-					localStorage.setItem('token', data);
+					console.log(data);
+					localStorage.setItem('token', data.token);
+					LINK_REGISTRO.classList.add('oculto');
+					LINK_USUARIO_DATOS.classList.remove('oculto');
+					LINK_USUARIO_PEDIDOS.classList.remove('oculto');
+					LINK_USUARIO_CARRITO.classList.remove('oculto');
+					if (data.permisos == 2) {
+						LINK_ADMIN.classList.remove('oculto');
+					} else {
+						LINK_ADMIN.classList.add('oculto');
+					}
 					return data;
 				}
 				return data;

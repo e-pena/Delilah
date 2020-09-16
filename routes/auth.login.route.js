@@ -29,7 +29,7 @@ route.post('/', async (req, res) => {
 							if (error) {
 								res.status(500).json({ Error: message.error });
 							} else {
-								res.status(200).json(token);
+								res.status(200).json({ token: token, permisos: usuarioExistente.permisos_id });
 							}
 						});
 					} else {
