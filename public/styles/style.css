@@ -10,12 +10,20 @@ body {
 	margin-top: 5em;
 }
 
+#contenedor-productos {
+	margin-left: 0px;
+}
+
 #registro {
 	padding: 1em;
 }
 
 #login {
 	width: 25em;
+}
+
+.producto {
+	margin: 0.5em;
 }
 
 .oculto {

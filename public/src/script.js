@@ -1,24 +1,31 @@
 const FORM_LOGIN = document.querySelector('#form-login');
-const BTN_LOGIN = document.querySelector('#btn-login');
-const USUARIO_LOGIN = document.querySelector('#usuario-login');
-const CONTRASENIA_LOGIN = document.querySelector('#contrasenia-login');
+const FORM_REGISTRO = document.querySelector('#form-registro');
 const MODAL_LOGIN = document.querySelector('#modal-login');
+const BTN_MODAL_LOGIN = document.querySelector('#btn-modal');
 const LINK_ADMIN = document.querySelector('#link-admin');
 const LINK_REGISTRO = document.querySelector('#link-registro');
 const LINK_USUARIO_DATOS = document.querySelector('#link-usuario-datos');
 const LINK_USUARIO_PEDIDOS = document.querySelector('#link-usuario-pedidos');
 const LINK_USUARIO_CARRITO = document.querySelector('#link-usuario-carrito');
-
-// data-toggle="modal" data-target="#login-modal"
+const CONTENEDOR_LOGIN = document.querySelector('#login');
+const CONTENEDOR_PRODUCTOS = document.querySelector('#contenedor-productos');
+const CONTENEDOR_PRODUCTOS_LISTADO = document.querySelector('#listado-productos');
+const BTN_AGREGAR_PRODUCTO = document.querySelectorAll('.btn-agregar-producto');
+const CANTIDAD_SELECT = document.querySelectorAll('.custom-select');
+const IMAGEN_PRODUCTO = document.querySelectorAll('.imagen-producto');
+const TITULO_PRODUCTO = document.querySelectorAll('.titulo-producto');
+const PRECIO_PRODUCTO = document.querySelectorAll('.precio-producto');
+const PRODUCTO = document.querySelectorAll('.producto');
 
 // FUNCIÓN PARA LOGUEARSE
 
 FORM_LOGIN.addEventListener('submit', function (e) {
 	e.preventDefault();
+	const payload = `{ "username": "${FORM_LOGIN.username.value}", "contrasenia": "${FORM_LOGIN.contrasenia.value}"}`;
 	try {
 		fetch('/login', {
 			method: 'POST',
-			body: `{ "username": "${FORM_LOGIN.username.value}", "contrasenia": "${FORM_LOGIN.contrasenia.value}"}`,
+			body: payload,
 			headers: { 'Content-Type': 'application/json' },
 		})
 			.then((response) => {
@@ -30,6 +37,7 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 				}
 				if (response.status == 200) {
 					MODAL_LOGIN.innerText = 'Ingreso exitoso';
+					mostrarProductos();
 					return response.json();
 				}
 			})
@@ -41,6 +49,7 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 					LINK_USUARIO_DATOS.classList.remove('oculto');
 					LINK_USUARIO_PEDIDOS.classList.remove('oculto');
 					LINK_USUARIO_CARRITO.classList.remove('oculto');
+					CONTENEDOR_LOGIN.classList.add('oculto');
 					if (data.permisos == 2) {
 						LINK_ADMIN.classList.remove('oculto');
 					} else {
@@ -54,91 +63,79 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 	} catch (error) {
 		return error;
 	}
-	return false;
 });
 
 // FUNCIÓN PARA REGISTRARSE
 
-// function signIn(usuario) {
-// 	try {
-// 		fetch('/usuarios/', {
-// 			method: 'POST',
-// 			body: JSON.stringify(usuario),
-// 			headers: { 'Content-Type': 'application/json' },
-// 		})
-// 			.then((response) => {
-// 				return response.json();
-// 			})
-// 			.then((data) => {
-// 				console.log(data);
-// 				idUsuarioActual = data.id;
-// 				paquetesBtn.disabled = false;
-// 				btnCompra.forEach((element) => {
-// 					element.disabled = false;
-// 				});
-// 				btnReserva.forEach((element) => {
-// 					element.disabled = false;
-// 				});
-// 			});
-// 	} catch (error) {
-// 		return error;
-// 	}
-// }
+FORM_REGISTRO.addEventListener('submit', function (e) {
+	e.preventDefault();
+	const payload = `{ "username": "${FORM_REGISTRO.username.value}", "nombre_completo": "${FORM_REGISTRO.nombre_completo.value}", "email": "${FORM_REGISTRO.email.value}", "direccion": "${FORM_REGISTRO.direccion.value}", "telefono": "${FORM_REGISTRO.telefono.value}", "contrasenia": "${FORM_REGISTRO.contrasenia.value}", "permisos_id": 2}`;
+	try {
+		fetch('/register', {
+			method: 'POST',
+			body: payload,
+			headers: { 'Content-Type': 'application/json' },
+		})
+			.then((response) => {
+				if (response.status == 400) {
+					MODAL_LOGIN.innerText = 'Información incompleta';
+				}
+				if (response.status == 409) {
+					MODAL_LOGIN.innerText = 'El username ya existe, seleccione uno nuevo';
+				}
+				if (response.status == 201) {
+					MODAL_LOGIN.innerText = 'Registro exitoso. Realice el LOGIN';
+					return response.json();
+				}
+			})
+			.then((data) => {
+				return data;
+			});
+		return response;
+	} catch (error) {
+		return error;
+	}
+});
 
-// // CLASES NECESARIAS PARA EL REGISTRO Y LOGUEO
+// MOSTRAR PLATOS DISPONIBLES
 
-// class UsuarioRegistrado {
-// 	constructor(username, contrasenia) {
-// 		this.username = username;
-// 		this.contrasenia = contrasenia;
-// 	}
-// 	email = '';
-// 	contrasenia = '';
-// }
+function mostrarProductos() {
+	let token = `Bearer ${localStorage.getItem('token')}`;
+	try {
+		const response = fetch('/productos', {
+			method: 'GET',
+			headers: { 'Content-Type': 'application/json', Authorization: token },
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				console.log(data);
+				CONTENEDOR_PRODUCTOS.classList.remove('oculto');
+				for (let i = 0; i < data.length; i++) {
+					const element = data[i];
+					console.log(element);
+					PRODUCTO[i].classList.remove('oculto');
+					IMAGEN_PRODUCTO[i].setAttribute('src', `${element.imagen}`);
+					IMAGEN_PRODUCTO[i].setAttribute('alt', `${element.titulo}`);
+					TITULO_PRODUCTO[i].innerHTML = element.titulo;
+					PRECIO_PRODUCTO[i].innerHTML = `$${element.precio}`;
+				}
+				return data;
+			})
+			.catch((error) => {
+				return error;
+			});
+		return response;
+	} catch (error) {
+		return console.error(error);
+	}
+}
 
-// class UsuarioNuevo {
-// 	constructor(nombre, apellido, email, contrasenia) {
-// 		this.nombre = nombre;
-// 		this.apellido = apellido;
-// 		this.email = email;
-// 		this.contrasenia = contrasenia;
-// 	}
-// 	nombre = '';
-// 	apellido = '';
-// 	email = '';
-// 	contrasenia = '';
-// }
-
-// // FUNCIONALIDAD DE BOTONES DE REGISTRO Y LOGUEO
-
-// BTN_LOGIN.addEventListener('click', (e) => {
-// 	e.preventDefault();
-// 	let username = USUARIO_LOGIN.value;
-// 	let contrasenia = CONTRASENIA_LOGIN.value;
-// 	let usuarioExistente = new UsuarioRegistrado(username, contrasenia);
-// 	logIn(usuarioExistente);
-// });
-
-// FORM_LOGIN.addEventListener('submit', (e) => {
-// 	e.preventDefault();
-// 	let username = FORM_LOGIN.username.value;
-// 	let contrasenia = FORM_LOGIN.contrasenia.value;
-// 	const usuario = new UsuarioRegistrado(username, contrasenia);
-// 	logIn(usuario);
-// });
-
-// signinBtn.addEventListener('click', (e) => {
-// 	e.preventDefault();
-// 	let apellido = signinApellido.value;
-// 	let nombre = signinNombre.value;
-// 	let email = signinEmail.value;
-// 	let contrasenia = signinContrasenia.value;
-// 	if (apellido && nombre && email) {
-// 		let usuarioNuevo = new UsuarioNuevo(nombre, apellido, email, contrasenia);
-// 		console.log(usuarioNuevo);
-// 		signIn(usuarioNuevo);
-// 		saludoUsuario.innerText = `Registro exitoso. Por favor, realice el log in`;
-// 		saludoUsuario.classList.remove('oculto');
-// 		logInFallido.classList.add('oculto');
-// 	}
-// });
+for (let i = 0; i < BTN_AGREGAR_PRODUCTO.length; i++) {
+	const element = BTN_AGREGAR_PRODUCTO[i];
+	element.addEventListener('click', (e) => {
+		e.preventDefault();
+		console.log(CANTIDAD_SELECT[i].value);
+	});
+}

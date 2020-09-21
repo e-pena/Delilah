@@ -50,33 +50,39 @@
 								¿Eres un usuario nuevo en el sitio? Registrate
 							</a>
 							<div id="registro" class="dropdown-menu col-12" aria-labelledby="navbarDropdown">
-								<form>
+								<form id="form-registro">
 									<div class="form-group">
 										<label for="usuario-registro">Usuario</label>
-										<input type="text" class="form-control" id="usuario-registro" aria-describedby="userHelp" />
+										<input
+											type="text"
+											name="username"
+											class="form-control"
+											id="usuario-registro"
+											aria-describedby="userHelp"
+										/>
 										<small id="userHelp" class="form-text text-muted"
 											>Ingrese un nombre de usuario único sin espacios</small
 										>
 									</div>
 									<div class="form-group">
 										<label for="nombre">Nombre y Apellido</label>
-										<input type="text" class="form-control" id="nombre" />
+										<input type="text" name="nombre_completo" class="form-control" id="nombre" />
 									</div>
 									<div class="form-group">
 										<label for="email">E-mail</label>
-										<input type="email" class="form-control" id="email" />
+										<input type="email" name="email" class="form-control" id="email" />
 									</div>
 									<div class="form-group">
 										<label for="direccion">Dirección</label>
-										<input type="text" class="form-control" id="direccion" />
+										<input type="text" name="direccion" class="form-control" id="direccion" />
 									</div>
 									<div class="form-group">
 										<label for="telefono">Teléfono</label>
-										<input type="tel" class="form-control" id="telefono" />
+										<input type="tel" name="telefono" class="form-control" id="telefono" />
 									</div>
 									<div class="form-group">
 										<label for="contrasenia-registro">Contraseña</label>
-										<input type="password" class="form-control" id="contrasenia-registro" />
+										<input type="password" name="contrasenia" class="form-control" id="contrasenia-registro" />
 									</div>
 									<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#registro-modal">
 										Confirmar
@@ -124,7 +130,7 @@
 			</div>
 		</header>
 
-		<div id="contenedor-login">
+		<div class="" id="contenedor-login">
 			<div id="login" class="card text-center text-white bg-success mb-3">
 				<div class="card-body">
 					<h5 class="card-title">Ingresar</h5>
@@ -150,7 +156,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="login-modal-titulo">Estado de ingreso:</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button id="btn-modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -159,6 +165,226 @@
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<div class="container oculto" id="contenedor-productos">
+			<div class="row">
+				<div id="listado-productos" class="col-10">
+					<div class="row">
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+						<div class="card text-white bg-success mb-3 oculto producto" style="max-width: 18rem">
+							<img src="" class="card-img-top imagen-producto" alt="" />
+							<div class="card-body">
+								<h5 class="card-title titulo-producto"></h5>
+								<p class="card-text precio-producto"></p>
+							</div>
+							<div class="input-group">
+								<select class="custom-select">
+									<option selected>Cantidad</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+								</select>
+								<div class="input-group-append">
+									<button class="btn btn-light btn-agregar-producto" type="button">Agregar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="productos-agregados" class="col-2">col-4</div>
 			</div>
 		</div>
 
