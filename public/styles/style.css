@@ -10,8 +10,16 @@ body {
 	margin-top: 5em;
 }
 
-#contenedor-productos {
+#grupo-productos {
 	margin-left: 0px;
+}
+
+#productos-agregados {
+	margin: 0;
+}
+
+#pedido-preview {
+	width: 22em;
 }
 
 #registro {

@@ -1,20 +1,25 @@
 const sql = require('../db/connection');
 const repoProductos = require('../repositories/productos.repo');
 
-async function crearProductosDelPedido(idProductos, idUsuario) {
+async function crearProductosDelPedido(dataProductos, idUsuario) {
 	try {
 		let [idPedido] = await sql.query('SELECT id FROM pedidos WHERE usuario_id = ? ORDER BY id DESC', {
 			replacements: [idUsuario],
 			type: sql.QueryTypes.SELECT,
 		});
-		idProductos.forEach(async (element) => {
-			await sql.query('INSERT INTO productoPedido (pedido_id, producto_id) VALUES (:pedido_id, :producto_id)', {
-				replacements: {
-					pedido_id: idPedido.id,
-					producto_id: element,
-				},
-				type: sql.QueryTypes.INSERT,
-			});
+		console.log(dataProductos);
+		dataProductos.forEach(async (element) => {
+			await sql.query(
+				'INSERT INTO productoPedido (pedido_id, producto_id, cantidad) VALUES (:pedido_id, :producto_id, :cantidad)',
+				{
+					replacements: {
+						pedido_id: idPedido.id,
+						producto_id: element.id,
+						cantidad: element.cantidad,
+					},
+					type: sql.QueryTypes.INSERT,
+				}
+			);
 		});
 	} catch (error) {
 		return error;
@@ -26,8 +31,9 @@ async function sumarCostoTotal(data) {
 		let costoTotal = 0;
 		for (let i = 0; i < data.length; i++) {
 			const element = data[i];
-			let [productoEncontrado] = await repoProductos.getProductsById(element);
-			costoTotal += productoEncontrado.precio;
+			let [productoEncontrado] = await repoProductos.getProductsById(element.id);
+			let costoDelProducto = productoEncontrado.precio * element.cantidad;
+			costoTotal += costoDelProducto;
 		}
 		return costoTotal;
 	} catch (error) {
@@ -37,7 +43,7 @@ async function sumarCostoTotal(data) {
 
 async function agregarNuevoPedido(data, idUsuario, infoProductos) {
 	try {
-		let costoTotal = await sumarCostoTotal(infoProductos.idProductos);
+		let costoTotal = await sumarCostoTotal(data.productos);
 		await sql.query(
 			'INSERT INTO pedidos (estado_id, descripcion, hora, pago_id, costo, usuario_id) VALUES (:estado_id, :descripcion, NOW(), :pago_id, :costo, :usuario_id)',
 			{
@@ -51,7 +57,7 @@ async function agregarNuevoPedido(data, idUsuario, infoProductos) {
 				type: sql.QueryTypes.INSERT,
 			}
 		);
-		await crearProductosDelPedido(infoProductos.idProductos, idUsuario);
+		await crearProductosDelPedido(data.productos, idUsuario);
 	} catch (error) {
 		return error;
 	}

@@ -5,12 +5,13 @@ const repoPedidos = require('../repositories/pedidos.repo');
 async function comprobarProducto(data) {
 	let idProductos = [];
 	let descripcionProductos = '';
+	// código nuevo
 	for (let i = 0; i < data.length; i++) {
 		const element = data[i];
-		let productoEncontrado = await repoProductos.getProductsById(element);
+		let productoEncontrado = await repoProductos.getProductsById(element.id);
 		if (productoEncontrado.length > 0) {
 			idProductos.push(productoEncontrado[0].id);
-			descripcionProductos += `${productoEncontrado[0].titulo} `;
+			descripcionProductos += `${element.cantidad} x ${productoEncontrado[0].titulo} |`;
 		}
 	}
 	if (data.length == idProductos.length) {
@@ -23,8 +24,7 @@ async function comprobarProducto(data) {
 async function comprobarUsuarioYProducto(data, idUsuario) {
 	try {
 		let existeUsuario = await repoUsuarios.getUsersById(idUsuario);
-		let productos = data.idProductos.split(',');
-		let existeProducto = await comprobarProducto(productos);
+		let existeProducto = await comprobarProducto(data.productos);
 		if (
 			existeProducto &&
 			existeUsuario &&

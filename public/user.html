@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Delilah Restó</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="./styles/style.user.css" />
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+				<a class="navbar-brand" href="index.html"
+					><img src="./images/pngwing.com.png" width="30" height="30" alt="" loading="lazy"
+				/></a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="index.html">Delilah Restó<span class="sr-only">(current)</span></a>
+						</li>
+					</ul>
+					<ul class="navbar-nav my-2 my-lg-0">
+						<li id="link-usuario-datos" class="nav-item">
+							<a class="nav-link" href="#">Mis Datos</a>
+						</li>
+						<li id="link-usuario-pedidos" class="nav-item">
+							<a class="nav-link" href="#">Mis Pedidos</a>
+						</li>
+						<li id="link-admin" class="nav-item oculto">
+							<a class="nav-link" href="#">Administrador</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<section id="contenedor">
+			<div class="card border-success mb-3" style="width: 24rem">
+				<div class="card-header">Mis datos</div>
+				<div class="card-body">
+					<h6 class="card-subtitle mb-2 text-muted">
+						Si desea modificar sus datos, reemplace los campos y haga click en "Confirmar cambios"
+					</h6>
+					<form id="form-update-usuario">
+						<div>
+							<label for="nombre">Nombre y Apellido</label>
+							<input type="text" name="nombre_completo" class="form-control" id="nombre" />
+						</div>
+						<div>
+							<label for="email">E-mail</label>
+							<input type="email" name="email" class="form-control" id="email" />
+						</div>
+						<div>
+							<label for="direccion">Dirección</label>
+							<input type="text" name="direccion" class="form-control" id="direccion" />
+						</div>
+						<div>
+							<label for="telefono">Teléfono</label>
+							<input type="tel" name="telefono" class="form-control" id="telefono" />
+						</div>
+						<div>
+							<label for="contrasenia-registro">Contraseña</label>
+							<input required type="password" name="contrasenia" class="form-control" id="contrasenia-update" />
+							<small id="userHelp" class="form-text text-muted"
+								>Ingrese contraseña actual o nueva para realizar el cambio</small
+							>
+						</div>
+						<button
+							id="btn-update"
+							type="submit"
+							class="btn btn-success"
+							data-toggle="modal"
+							data-target="#update-modal"
+						>
+							Confirmar cambios
+						</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- Modal -->
+		<div class="modal fade" id="update-modal" tabindex="-1" aria-labelledby="update-modal-titulo" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="update-modal-titulo"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div id="update-modal-texto" class="modal-body"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+			integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+			crossorigin="anonymous"
+		></script>
+		<script src="./src/script.user.js"></script>
+	</body>
+</html>
