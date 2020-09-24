@@ -3,6 +3,8 @@ const FORM_UPDATE = document.querySelector('#form-update-usuario');
 const MODAL_UPDATE_TITULO = document.querySelector('#update-modal-titulo');
 const MODAL_UPDATE_TEXTO = document.querySelector('#update-modal-texto');
 const BTN_UPDATE = document.querySelector('#btn-update');
+const LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion');
+const BTN_LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion-boton');
 
 let idUsuarioActual = null;
 let token = localStorage.getItem('token');
@@ -119,4 +121,10 @@ FORM_UPDATE.addEventListener('submit', function (e) {
 			return error;
 		}
 	}
+});
+
+BTN_LINK_CERRAR_SESION.addEventListener('click', (e) => {
+	e.preventDefault();
+	localStorage.clear();
+	history.back();
 });

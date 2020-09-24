@@ -6,6 +6,8 @@ const LINK_ADMIN = document.querySelector('#link-admin');
 const LINK_REGISTRO = document.querySelector('#link-registro');
 const LINK_USUARIO_DATOS = document.querySelector('#link-usuario-datos');
 const LINK_USUARIO_PEDIDOS = document.querySelector('#link-usuario-pedidos');
+const LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion');
+const BTN_LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion-boton');
 const CONTENEDOR_LOGIN = document.querySelector('#login');
 const CONTENEDOR_PRODUCTOS = document.querySelector('#contenedor-productos');
 const CONTENEDOR_PRODUCTOS_LISTADO = document.querySelector('#listado-productos');
@@ -22,12 +24,17 @@ const COSTO_TOTAL = document.querySelector('#costo-total');
 const DETALLE_PEDIDO = document.querySelector('#detalle-pedido');
 const BTN_MEDIO_PAGO = document.querySelector('#medio-pago');
 const BTN_CONFIRMAR_PEDIDO = document.querySelector('#btn-confirmar-pedido');
+const BTN_VACIAR_CARRITO = document.querySelector('#btn-vaciar-carrito');
 const MODAL_CONFIRMACION_PEDIDO_TITULO = document.querySelector('#modal-confirmacion-pedido-titulo');
 const MODAL_CONFIRMACION_PEDIDO_TEXTO = document.querySelector('#modal-confirmacion-pedido-texto');
+const CHECKBOX_ENVIO = document.querySelector('#envio');
+const TEXTO_ENVIO = document.querySelector('#envio-texto');
 
 let listaProductos = [];
 let listadoProductosPedidos = [];
 let idUsuarioActual = null;
+let idCostoDeEnvio;
+let costoDeEnvio;
 let precioTotal = 0;
 
 class Producto {
@@ -50,6 +57,7 @@ function comprobarToken() {
 		LINK_REGISTRO.classList.add('oculto');
 		LINK_USUARIO_DATOS.classList.remove('oculto');
 		LINK_USUARIO_PEDIDOS.classList.remove('oculto');
+		LINK_CERRAR_SESION.classList.remove('oculto');
 		CONTENEDOR_LOGIN.classList.add('oculto');
 		mostrarProductos(jwt);
 		if (decoded.permisos == 2) {
@@ -99,6 +107,7 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 					LINK_REGISTRO.classList.add('oculto');
 					LINK_USUARIO_DATOS.classList.remove('oculto');
 					LINK_USUARIO_PEDIDOS.classList.remove('oculto');
+					LINK_CERRAR_SESION.classList.remove('oculto');
 					CONTENEDOR_LOGIN.classList.add('oculto');
 					idUsuarioActual = decoded.id;
 					if (decoded.permisos == 2) {
@@ -163,7 +172,11 @@ function mostrarProductos(jwt) {
 			.then((data) => {
 				console.log(data);
 				CONTENEDOR_PRODUCTOS.classList.remove('oculto');
-				for (let i = 0; i < data.length; i++) {
+				costoDeEnvio = data[0].precio;
+				idCostoDeEnvio = data[0].id;
+				precioTotal = costoDeEnvio;
+				TEXTO_ENVIO.innerHTML = `<strong>Costo de envío:</strong> $${costoDeEnvio}</p>`;
+				for (let i = 1; i < data.length; i++) {
 					const element = data[i];
 					console.log(element);
 					PRODUCTO[i].classList.remove('oculto');
@@ -194,27 +207,43 @@ for (let i = 0; i < BTN_AGREGAR_PRODUCTO.length; i++) {
 		if (!isNaN(CANTIDAD_SELECT[i].value)) {
 			BTN_CONFIRMAR_PEDIDO.removeAttribute('disabled');
 			let cantidad = Number(CANTIDAD_SELECT[i].value);
-			let producto = listaProductos[i];
+			let producto = listaProductos[i - 1];
 			MENSAJE_SIN_PRODUCTOS.classList.add('oculto');
 			let precioLineaPedido = cantidad * producto.precio;
 			let lineaPedido = document.createElement('div');
-			lineaPedido.innerHTML = `<img src="${producto.imagen}" alt="${producto.titulo}" style="width: 2em; height: 2em; border: solid 1px black"/> <span><strong>${producto.titulo}</strong> - ${cantidad} x $${producto.precio} = ${precioLineaPedido}</span>`;
+			lineaPedido.innerHTML = `<img src="${producto.imagen}" alt="${producto.titulo}" style="width: 2em; height: 2em; border: solid 1px black"/> <span><strong>${producto.titulo}</strong> - ${cantidad} x $${producto.precio} = $${precioLineaPedido}</span>`;
 			precioTotal += precioLineaPedido;
 			DETALLE_PEDIDO.appendChild(lineaPedido);
 			let productoPedido = `{ "id": ${producto.id}, "cantidad": ${cantidad} }`;
 			listadoProductosPedidos.push(productoPedido);
 			console.log(listadoProductosPedidos);
 		}
-		COSTO_TOTAL.innerHTML = '';
 		COSTO_TOTAL.innerHTML = `<strong>Costo total:</strong> $${precioTotal}`;
 	});
 }
+
+CHECKBOX_ENVIO.addEventListener('change', (e) => {
+	e.preventDefault();
+	if (CHECKBOX_ENVIO.checked == true) {
+		precioTotal -= costoDeEnvio;
+		TEXTO_ENVIO.innerHTML = `<strong>Costo de envío:</strong> ¡GRATIS!</p>`;
+		COSTO_TOTAL.innerHTML = `<strong>Costo total:</strong> $${precioTotal}`;
+	} else {
+		precioTotal += costoDeEnvio;
+		TEXTO_ENVIO.innerHTML = `<strong>Costo de envío:</strong> $${costoDeEnvio}</p>`;
+		COSTO_TOTAL.innerHTML = `<strong>Costo total:</strong> $${precioTotal}`;
+	}
+});
 
 // CONFIRMAR PEDIDO
 
 BTN_CONFIRMAR_PEDIDO.addEventListener('click', (e) => {
 	e.preventDefault();
 	let token = `Bearer ${localStorage.getItem('token')}`;
+	if (TEXTO_ENVIO.textContent == `Costo de envío: $${costoDeEnvio}`) {
+		let envioAgregado = `{ "id": ${idCostoDeEnvio}, "cantidad": 1 }`;
+		listadoProductosPedidos.push(envioAgregado);
+	}
 	const payload = `{ "estado_id": 1, "productos": [${listadoProductosPedidos}], "pago_id": ${BTN_MEDIO_PAGO.value}}`;
 	console.log(payload);
 	try {
@@ -245,9 +274,8 @@ BTN_CONFIRMAR_PEDIDO.addEventListener('click', (e) => {
 				}
 			})
 			.then((data) => {
-				listaProductos = [];
 				listadoProductosPedidos = [];
-				precioTotal = 0;
+				precioTotal = costoDeEnvio;
 				BTN_CONFIRMAR_PEDIDO.setAttribute('disabled', true);
 				MENSAJE_SIN_PRODUCTOS.classList.remove('oculto');
 				DETALLE_PEDIDO.textContent = '';
@@ -258,4 +286,14 @@ BTN_CONFIRMAR_PEDIDO.addEventListener('click', (e) => {
 	} catch (error) {
 		return error;
 	}
+});
+
+BTN_VACIAR_CARRITO.addEventListener('click', (e) => {
+	location.reload();
+});
+
+BTN_LINK_CERRAR_SESION.addEventListener('click', (e) => {
+	e.preventDefault();
+	localStorage.clear();
+	location.reload();
 });

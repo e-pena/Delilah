@@ -4,6 +4,13 @@ body {
 	width: 100vw;
 }
 
+.card {
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	padding: 0.1em;
+}
+
 #contenedor-login {
 	display: flex;
 	justify-content: center;
@@ -30,8 +37,76 @@ body {
 	width: 25em;
 }
 
+#contenedor-productos {
+	margin-top: -2em;
+}
+
 .producto {
 	margin: 0.5em;
+}
+
+.imagen-producto {
+	height: 14em;
+	border-radius: 0.5em;
+}
+
+.contenedor-cantidad {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.cantidad-productos {
+	max-width: 7em;
+	height: 2.8em;
+}
+
+.precio-producto {
+	font-size: 1.4em;
+	font-weight: bold;
+	margin-right: 1em;
+}
+
+.titulo-producto {
+	text-align: end;
+	font-size: 1.4em;
+}
+
+.btn-agregar-producto {
+	height: 2.8em;
+}
+
+#header-carrito {
+	font-weight: bolder;
+}
+
+#btn-vaciar-carrito {
+	color: #ff0000;
+	text-align: end;
+	margin-bottom: -1em;
+}
+
+#detalle-pedido {
+	margin: -1em auto 1em 0.5em;
+}
+
+#contenedor-medio-pago {
+	display: flex;
+	align-items: baseline;
+	margin-left: 0.5em;
+	margin-bottom: 1em;
+}
+
+#medio-pago {
+	max-width: 10em;
+	margin-left: 2em;
+}
+
+#contenedor-envio {
+	margin-left: 1em;
+}
+
+#envio-texto {
+	margin-top: 0.5em;
 }
 
 .oculto {
