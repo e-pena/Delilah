@@ -30,6 +30,8 @@ function comprobarToken() {
 
 comprobarToken();
 
+// VALIDAR CAMPOS
+
 function validarInput() {
 	if (
 		FORM_UPDATE.nombre_completo.value.length == 0 &&
@@ -43,6 +45,8 @@ function validarInput() {
 }
 
 validarInput();
+
+// AUTOCOMPLETAR FORMULARIO
 
 function completarFormulario() {
 	let auth = `Bearer ${token}`;
@@ -73,6 +77,8 @@ function completarFormulario() {
 }
 
 completarFormulario();
+
+// ACTUALIZAR DATOS
 
 FORM_UPDATE.addEventListener('submit', function (e) {
 	e.preventDefault();
@@ -123,8 +129,10 @@ FORM_UPDATE.addEventListener('submit', function (e) {
 	}
 });
 
+// CERRAR SESIÓN
+
 BTN_LINK_CERRAR_SESION.addEventListener('click', (e) => {
 	e.preventDefault();
 	localStorage.clear();
-	history.back();
+	window.location.replace('./index.html');
 });

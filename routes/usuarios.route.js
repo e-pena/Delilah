@@ -83,4 +83,18 @@ route.post('/:id/pedidos', mwAuthToken.verificarTokenUsuario, async (req, res) =
 	}
 });
 
+route.patch('/:id/pedidos/:idPedido', mwAuthToken.verificarTokenUsuario, async (req, res) => {
+	try {
+		repoPedidos.modificarEstadoDePedido(req.body, req.params.idPedido).then((resultado) => {
+			if (resultado) {
+				res.status(200).json({ Mensaje: 'Pedido modificado' });
+			} else {
+				res.status(404).json({ Error: 'Pedido no encontrado' });
+			}
+		});
+	} catch (error) {
+		res.status(500).json({ Error: error.message });
+	}
+});
+
 module.exports = route;

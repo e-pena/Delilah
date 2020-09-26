@@ -1,0 +1,44 @@
+body {
+	background-image: url('../images/fondo.jpg');
+	background-color: transparent;
+	width: 100vw;
+}
+
+.card {
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	padding: 0.1em;
+}
+
+#pedidos {
+	display: flex;
+	flex-direction: column;
+}
+
+#tabla-usuario-pedidos {
+	width: 70em;
+	margin-left: 5em;
+	margin-top: 0.5em;
+}
+
+#titulo-tabla {
+	background-color: #28a745;
+	padding: 0.5em;
+	width: fit-content;
+	margin-left: 5em;
+	margin-top: 1.5em;
+	color: #ffffff;
+}
+
+.table-success {
+	color: #000000;
+}
+
+.btn-danger {
+	align-items: end;
+}
+
+.oculto {
+	display: none;
+}
