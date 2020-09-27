@@ -1,0 +1,28 @@
+body {
+	background-image: url('../images/fondo.jpg');
+	background-color: transparent;
+	width: 100vw;
+}
+
+.btn-collapse {
+	margin: 1em;
+}
+
+.card {
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+	padding: 0.1em;
+}
+
+#usuarios {
+	margin: 1em;
+}
+
+.table-success {
+	color: #000000;
+}
+
+.oculto {
+	display: none;
+}

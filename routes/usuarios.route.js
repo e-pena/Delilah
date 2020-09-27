@@ -41,6 +41,20 @@ route.put('/:id', mwAuthToken.verificarTokenUsuario, (req, res) => {
 	}
 });
 
+route.patch('/:id', mwAuthToken.verificarTokenAdmin, (req, res) => {
+	try {
+		repoUsuarios.modificarPermisosDeUsuario(req.body, req.params.id).then((resultado) => {
+			if (resultado) {
+				res.status(201).json(resultado);
+			} else {
+				res.status(404).json({ Error: 'Usuario no encontrado' });
+			}
+		});
+	} catch (error) {
+		res.status(500).json({ Error: error.message });
+	}
+});
+
 route.delete('/:id', mwAuthToken.verificarTokenUsuario, (req, res) => {
 	try {
 		repoUsuarios.borrarUsuario(req.params.id).then((resultado) => {

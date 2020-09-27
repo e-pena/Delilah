@@ -133,4 +133,32 @@ async function borrarUsuario(id) {
 	}
 }
 
-module.exports = { comprobarUsuario, registrarUsuario, getUsers, getUsersById, modificarUsuario, borrarUsuario };
+async function modificarPermisosDeUsuario(data, id) {
+	try {
+		let comprobacionDeUsuario = await getUsersById(id);
+		if (comprobacionDeUsuario) {
+			await sql.query('UPDATE usuarios SET permisos_id = :permisos_id WHERE id = :id', {
+				replacements: {
+					permisos_id: data.permisos_id,
+					id: id,
+				},
+				type: sql.QueryTypes.UPDATE,
+			});
+			return data;
+		} else {
+			return false;
+		}
+	} catch (error) {
+		return error;
+	}
+}
+
+module.exports = {
+	comprobarUsuario,
+	registrarUsuario,
+	getUsers,
+	getUsersById,
+	modificarUsuario,
+	borrarUsuario,
+	modificarPermisosDeUsuario,
+};

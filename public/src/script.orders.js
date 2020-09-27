@@ -2,6 +2,9 @@ const LINK_ADMIN = document.querySelector('#link-admin');
 const LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion');
 const BTN_LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion-boton');
 const TABLA_USUARIO_PEDIDOS = document.querySelector('#tabla-usuario-pedidos');
+const MODAL_CANCELAR_TITULO = document.querySelector('#cancelar-modal-titulo');
+const MODAL_CANCELAR_TEXTO = document.querySelector('#cancelar-modal-texto');
+const MODAL_BTN = document.querySelector('#btn-modal');
 
 let idUsuarioActual = null;
 let token = localStorage.getItem('token');
@@ -49,35 +52,21 @@ function cargarPedidosUsuario() {
 			.then((data) => {
 				for (let i = data.length - 1; i >= 0; i--) {
 					const element = data[i].datosPedido;
-					let btnCancelar = document.createElement('button');
-					btnCancelar.innerHTML = 'Cancelar';
-					btnCancelar.setAttribute('type', 'button');
-					btnCancelar.setAttribute('data-toggle', 'modal');
-					btnCancelar.setAttribute('data-target', '#cancelar-modal');
-					btnCancelar.classList.add('btn');
-					btnCancelar.classList.add('btn-danger');
-					btnCancelar.addEventListener('click', (e) => {
-						e.preventDefault();
-						if (element.estado == 'Nuevo' || element.estado == 'Confirmado' || element.estado == 'Preparando') {
-							cancelarPedido(element.id);
-							TABLA_USUARIO_PEDIDOS.innerHTML = `<thead>
-							<tr>
-								<th scope="col">Tu orden</th>
-								<th scope="col">Costo</th>
-								<th scope="col">Forma de pago</th>
-								<th scope="col">Estado</th>
-							</tr>
-						</thead>`;
-							cargarPedidosUsuario();
-						}
-					});
 					let pedido = document.createElement('tr');
-					pedido.innerHTML = `<th scope="row" class="table-success">${element.descripcion}</th>
+					if (element.estado == 'Nuevo' || element.estado == 'Confirmado' || element.estado == 'Preparando') {
+						pedido.innerHTML = `<th scope="row" class="table-success">${element.descripcion}</th>
 					<td class="table-success">${element.costo}</td>
 					<td class="table-success">${element.forma_pago}</td>
-					<td class="table-success">${element.estado}</td>`;
+					<td class="table-success">${element.estado}</td>
+					<td class="table-success"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelar-modal" onclick="cancelarPedido(${element.id})">Cancelar</button></td>`;
+					} else {
+						pedido.innerHTML = `<th scope="row" class="table-success">${element.descripcion}</th>
+					<td class="table-success">${element.costo}</td>
+					<td class="table-success">${element.forma_pago}</td>
+					<td class="table-success">${element.estado}</td>
+					<td class="table-success">Inhabilitado</td>`;
+					}
 					TABLA_USUARIO_PEDIDOS.appendChild(pedido);
-					TABLA_USUARIO_PEDIDOS.appendChild(btnCancelar);
 				}
 				return data;
 			});
@@ -91,7 +80,16 @@ cargarPedidosUsuario();
 
 // CANCELAR PEDIDO
 
-function cancelarPedido(idPedido) {
+function cancelarPedido(id) {
+	if (window.confirm('¿Realmente querés cancelar el pedido?')) {
+		cancelarPedidoPost(id);
+	} else {
+		MODAL_CANCELAR_TITULO.innerText = 'Seguiremos preparando su pedido';
+		MODAL_CANCELAR_TEXTO.innerText = 'Gracias por confiar en nosotros';
+	}
+}
+
+function cancelarPedidoPost(idPedido) {
 	let auth = `Bearer ${token}`;
 	const payload = '{ "estado_id": 5 }';
 	try {
@@ -104,7 +102,6 @@ function cancelarPedido(idPedido) {
 				console.log(response);
 			})
 			.then((data) => {
-				// location.reload();
 				return data;
 			});
 		return response;
@@ -112,3 +109,9 @@ function cancelarPedido(idPedido) {
 		return error;
 	}
 }
+
+MODAL_BTN.addEventListener('click', (e) => {
+	e.preventDefault();
+	TABLA_USUARIO_PEDIDOS.innerHTML = '';
+	cargarPedidosUsuario();
+});

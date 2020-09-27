@@ -103,7 +103,7 @@ async function getPedidos() {
 async function getPedidosdeUsuarioPorId(id) {
 	try {
 		let pedidos = await sql.query(
-			'SELECT pedidos.id, pedidos.descripcion, pedidos.hora, pedidos.costo, estados.estado, pago.forma_pago, usuarios.id AS usuario_id FROM pedidos JOIN estados ON pedidos.estado_id = estados.id JOIN pago ON pedidos.pago_id = pago.id JOIN usuarios ON pedidos.usuario_id = usuarios.id WHERE usuarios.id = ?',
+			'SELECT pedidos.id, pedidos.descripcion, pedidos.hora, pedidos.costo, estados.estado, pago.forma_pago, usuarios.id AS usuario_id FROM pedidos JOIN estados ON pedidos.estado_id = estados.id JOIN pago ON pedidos.pago_id = pago.id JOIN usuarios ON pedidos.usuario_id = usuarios.id WHERE usuarios.id = ? ORDER BY id ASC',
 			{ replacements: [id], type: sql.QueryTypes.SELECT }
 		);
 		let productos = await sql.query(
