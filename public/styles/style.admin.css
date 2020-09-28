@@ -16,11 +16,48 @@ body {
 }
 
 #usuarios {
+	max-width: 80em;
+	margin: 1em;
+}
+
+#productos {
+	max-width: 80em;
+	margin: 1em;
+}
+
+#pedidos {
+	max-width: 80em;
 	margin: 1em;
 }
 
 .table-success {
 	color: #000000;
+}
+
+.secciones-titulo {
+	background-color: #28a745;
+	padding: 0.5em;
+	width: fit-content;
+	margin-left: 5em;
+	margin-top: 1.5em;
+	color: #ffffff;
+}
+
+#contenedor-btn-collapse {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-collapse {
+	margin-top: 3em;
+	width: 20em;
+	height: 4em;
+	justify-content: space-around;
+}
+
+img {
+	max-width: 3em;
+	max-height: 3em;
 }
 
 .oculto {

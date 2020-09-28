@@ -3,6 +3,7 @@ const FORM_REGISTRO = document.querySelector('#form-registro');
 const MODAL_LOGIN = document.querySelector('#modal-login');
 const BTN_MODAL_LOGIN = document.querySelector('#btn-modal');
 const LINK_ADMIN = document.querySelector('#link-admin');
+const LINK_PEDIDO_NUEVO = document.querySelector('#link-pedido-nuevo');
 const LINK_REGISTRO = document.querySelector('#link-registro');
 const LINK_USUARIO_DATOS = document.querySelector('#link-usuario-datos');
 const LINK_USUARIO_PEDIDOS = document.querySelector('#link-usuario-pedidos');
@@ -58,6 +59,7 @@ function comprobarToken() {
 		LINK_USUARIO_DATOS.classList.remove('oculto');
 		LINK_USUARIO_PEDIDOS.classList.remove('oculto');
 		LINK_CERRAR_SESION.classList.remove('oculto');
+		LINK_PEDIDO_NUEVO.classList.remove('oculto');
 		CONTENEDOR_LOGIN.classList.add('oculto');
 		mostrarProductos(jwt);
 		if (decoded.permisos == 2) {
@@ -129,7 +131,7 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 
 FORM_REGISTRO.addEventListener('submit', function (e) {
 	e.preventDefault();
-	const payload = `{ "username": "${FORM_REGISTRO.username.value}", "nombre_completo": "${FORM_REGISTRO.nombre_completo.value}", "email": "${FORM_REGISTRO.email.value}", "direccion": "${FORM_REGISTRO.direccion.value}", "telefono": "${FORM_REGISTRO.telefono.value}", "contrasenia": "${FORM_REGISTRO.contrasenia.value}", "permisos_id": 2}`;
+	const payload = `{ "username": "${FORM_REGISTRO.username.value}", "nombre_completo": "${FORM_REGISTRO.nombre_completo.value}", "email": "${FORM_REGISTRO.email.value}", "direccion": "${FORM_REGISTRO.direccion.value}", "telefono": "${FORM_REGISTRO.telefono.value}", "contrasenia": "${FORM_REGISTRO.contrasenia.value}", "permisos_id": 1}`;
 	try {
 		fetch('/register', {
 			method: 'POST',

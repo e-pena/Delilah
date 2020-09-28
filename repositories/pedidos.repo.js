@@ -74,7 +74,7 @@ class Pedido {
 async function getPedidos() {
 	try {
 		let pedidos = await sql.query(
-			'SELECT pedidos.id, pedidos.descripcion, pedidos.hora, pedidos.costo, estados.estado, pago.forma_pago, usuarios.username, usuarios.direccion, usuarios.telefono, usuarios.email FROM pedidos JOIN estados ON pedidos.estado_id = estados.id JOIN pago ON pedidos.pago_id = pago.id JOIN usuarios ON pedidos.usuario_id = usuarios.id',
+			'SELECT pedidos.id, pedidos.descripcion, pedidos.hora, pedidos.costo, estados.estado, pago.forma_pago, usuarios.nombre_completo, usuarios.direccion, usuarios.telefono, usuarios.email FROM pedidos JOIN estados ON pedidos.estado_id = estados.id JOIN pago ON pedidos.pago_id = pago.id JOIN usuarios ON pedidos.usuario_id = usuarios.id ORDER BY id DESC',
 			{ type: sql.QueryTypes.SELECT }
 		);
 		let productos = await sql.query(

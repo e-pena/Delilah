@@ -56,21 +56,16 @@ async function modificarProducto(data, id) {
 	try {
 		let comprobacionDeProducto = await getProductsById(id);
 		if (comprobacionDeProducto) {
-			let comprobacionTitulo = await getProductsByTitle(data);
-			if (comprobacionTitulo) {
-				await sql.query('UPDATE productos SET titulo = :titulo, precio = :precio, imagen = :imagen WHERE id = :id', {
-					replacements: {
-						titulo: data.titulo,
-						precio: data.precio,
-						imagen: data.imagen,
-						id: id,
-					},
-					type: sql.QueryTypes.UPDATE,
-				});
-				return data;
-			} else {
-				return false;
-			}
+			await sql.query('UPDATE productos SET titulo = :titulo, precio = :precio, imagen = :imagen WHERE id = :id', {
+				replacements: {
+					titulo: data.titulo,
+					precio: data.precio,
+					imagen: data.imagen,
+					id: id,
+				},
+				type: sql.QueryTypes.UPDATE,
+			});
+			return data;
 		} else {
 			return false;
 		}

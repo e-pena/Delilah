@@ -37,6 +37,9 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav my-2 my-lg-0">
+						<li id="link-pedido-nuevo" class="nav-item">
+							<a class="nav-link" href="index.html">Nuevo Pedido</a>
+						</li>
 						<li id="link-usuario-datos" class="nav-item">
 							<a class="nav-link" href="user.html">Mis Datos</a>
 						</li>
@@ -54,18 +57,51 @@
 			</nav>
 		</header>
 
-		<button
-			class="btn btn-primary btn-collapse"
-			type="button"
-			data-toggle="collapse"
-			data-target="#usuarios"
-			aria-expanded="false"
-			aria-controls="usuarios"
-		>
-			Usuarios
-		</button>
+		<div id="contenedor-btn-collapse">
+			<button
+				class="btn btn-primary btn-collapse"
+				type="button"
+				data-toggle="collapse"
+				data-target="#usuarios"
+				aria-expanded="false"
+				aria-controls="usuarios"
+			>
+				Usuarios
+			</button>
+			<button
+				class="btn btn-primary btn-collapse"
+				type="button"
+				data-toggle="collapse"
+				data-target="#productos"
+				aria-expanded="false"
+				aria-controls="productos"
+			>
+				Productos
+			</button>
+			<button
+				class="btn btn-primary btn-collapse"
+				type="button"
+				data-toggle="modal"
+				data-target="#modal-productos-creacion"
+				aria-expanded="false"
+				aria-controls="modal-productos-creacion"
+			>
+				Crear producto
+			</button>
+			<button
+				class="btn btn-primary btn-collapse"
+				type="button"
+				data-toggle="collapse"
+				data-target="#pedidos"
+				aria-expanded="false"
+				aria-controls="pedidos"
+			>
+				Pedidos
+			</button>
+		</div>
+
 		<section class="collapse" id="usuarios">
-			<h3 id="usuarios-titulo">Usuarios registrados</h3>
+			<h3 class="secciones-titulo" id="usuarios-titulo">Usuarios registrados</h3>
 			<table class="table table-striped table-dark" id="usuarios-tabla-encabezado">
 				<thead>
 					<tr>
@@ -93,7 +129,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="usuario-modal-titulo"></h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
@@ -102,6 +138,192 @@
 							<button type="button" id="btn-modal-usuario" class="btn btn-secondary" data-dismiss="modal">
 								Cerrar
 							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="collapse" id="productos">
+			<h3 class="secciones-titulo" id="productos-titulo">Productos disponibles</h3>
+
+			<table class="table table-striped table-dark" id="productos-tabla-encabezado">
+				<thead>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">Titulo</th>
+						<th scope="col">Precio</th>
+						<th scope="col">Imagen</th>
+						<th scope="col">Editar</th>
+						<th scope="col">Borrar</th>
+					</tr>
+				</thead>
+				<tbody id="productos-tabla-cuerpo"></tbody>
+			</table>
+
+			<div
+				class="modal fade"
+				id="producto-modal"
+				tabindex="-1"
+				aria-labelledby="producto-modal-titulo"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="producto-modal-titulo"></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div id="producto-modal-texto" class="modal-body"></div>
+						<div class="modal-footer">
+							<button type="button" id="btn-modal-producto" class="btn btn-secondary" data-dismiss="modal">
+								Cerrar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- MODAL PARA EDITAR PRODUCTO -->
+			<div
+				class="modal fade"
+				id="modal-editar-producto"
+				tabindex="-1"
+				aria-labelledby="editar-producto-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="editar-producto-label">Editar producto</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="form-update-producto">
+								<div class="form-group">
+									<label for="nombre" class="col-form-label">Título</label>
+									<input type="text" name="titulo" class="form-control" id="titulo" />
+								</div>
+								<div class="form-group">
+									<label for="precio" class="col-form-label">Precio</label>
+									<input type="number" name="precio" class="form-control" id="precio" />
+								</div>
+								<div class="form-group">
+									<label for="imagen" class="col-form-label">Imagen</label>
+									<input type="url" name="imagen" class="form-control" id="imagen" />
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									<button type="submit" class="btn btn-success" id="btn-update-producto">Confirmar cambios</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<!-- MODAL PARA CREAR PRODUCTO -->
+			<div
+				class="modal fade"
+				id="modal-productos-creacion"
+				tabindex="-1"
+				aria-labelledby="modal-productos-creacion-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="modal-productos-creacion-label">Crear producto</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="form-crear-producto">
+								<div class="form-group">
+									<label for="nombre" class="col-form-label">Título</label>
+									<input required type="text" name="titulo" class="form-control" id="crear-producto-titulo" />
+								</div>
+								<div class="form-group">
+									<label for="precio" class="col-form-label">Precio</label>
+									<input required type="number" name="precio" class="form-control" id="crear-producto-precio" />
+								</div>
+								<div class="form-group">
+									<label for="imagen" class="col-form-label">Imagen</label>
+									<input required type="url" name="imagen" class="form-control" id="crear-producto-imagen" />
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									<button type="submit" class="btn btn-success" id="btn-crear-producto">Confirmar cambios</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="collapse" id="pedidos">
+			<h3 class="secciones-titulo" id="pedidos-titulo">Pedidos realizados</h3>
+			<table class="table table-striped table-dark" id="pedidos-tabla-encabezado">
+				<thead>
+					<tr>
+						<th scope="col">id</th>
+						<th scope="col">Descripción</th>
+						<th scope="col">Costo</th>
+						<th scope="col">Estado</th>
+						<th scope="col">Pago</th>
+						<th scope="col">Usuario</th>
+						<th scope="col">Dirección</th>
+						<th scope="col">Teléfono</th>
+						<th scope="col">Email</th>
+						<th scope="col">Actualizar estado</th>
+					</tr>
+				</thead>
+				<tbody id="pedidos-tabla-cuerpo"></tbody>
+			</table>
+
+			<!-- MODAL PARA EDITAR PEDIDO -->
+			<div
+				class="modal fade"
+				id="modal-editar-pedido"
+				tabindex="-1"
+				aria-labelledby="editar-pedido-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="modal-editar-pedido-label">Editar pedido</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="form-update-pedido">
+								<div class="form-group col-md-4">
+									<label for="estado">Estado</label>
+									<select id="estado" class="form-control">
+										<option selected>Elegir</option>
+										<option value="1">Nuevo</option>
+										<option value="2">Confirmado</option>
+										<option value="3">Preparando</option>
+										<option value="4">Enviando</option>
+										<option value="5">Cancelado</option>
+										<option value="6">Entregado</option>
+									</select>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									<button type="submit" class="btn btn-success" id="btn-update-pedido">Confirmar cambios</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
