@@ -19,6 +19,8 @@ const MODAL_PEDIDO_TEXTO = document.querySelector('#pedido-modal-texto');
 const MODAL_PEDIDO = document.querySelector('#modal-editar-pedido');
 const FORM_CREACION_PRODUCTO = document.querySelector('#form-crear-producto');
 const MODAL_CREACION_PRODUCTO = document.querySelector('#modal-productos-creacion');
+const BTN_CREAR_PRODUCTO = document.querySelector('#btn-crear-producto');
+const INPUTS = FORM_CREACION_PRODUCTO.getElementsByTagName('input');
 
 let idUsuarioActual = null;
 let token = localStorage.getItem('token');
@@ -325,6 +327,30 @@ function editarProducto(id) {
 		}
 	});
 }
+
+// VALIDAR CAMPOS DE CREACIÓN DE PRODUCTO
+
+for (let i = 0; i < INPUTS.length; i++) {
+	const element = INPUTS[i];
+	element.addEventListener('keyup', (e) => {
+		e.preventDefault();
+		validarInput();
+	});
+}
+
+function validarInput() {
+	if (
+		FORM_CREACION_PRODUCTO.titulo.value.length == 0 ||
+		FORM_CREACION_PRODUCTO.precio.value.length == 0 ||
+		FORM_CREACION_PRODUCTO.imagen.value.length == 0
+	) {
+		BTN_CREAR_PRODUCTO.disabled = true;
+	} else {
+		BTN_CREAR_PRODUCTO.disabled = false;
+	}
+}
+
+validarInput();
 
 // CREAR PRODUCTO
 

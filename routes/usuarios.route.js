@@ -3,6 +3,7 @@ const route = express.Router();
 const repoUsuarios = require('../repositories/usuarios.repo');
 const repoPedidos = require('../repositories/pedidos.repo');
 const servicesPedidos = require('../services/pedidos.service');
+const servicesUsuarios = require('../services/usuarios.service');
 const mwAuthToken = require('../middlewares/auth.token');
 
 route.get('/', mwAuthToken.verificarTokenAdmin, async (req, res) => {
@@ -32,6 +33,7 @@ route.put('/:id', mwAuthToken.verificarTokenUsuario, (req, res) => {
 		repoUsuarios.modificarUsuario(req.body, req.params.id).then((resultado) => {
 			if (resultado) {
 				res.status(201).json(resultado);
+				servicesUsuarios.enviarMailActualizacionDatos(req.body);
 			} else {
 				res.status(404).json({ Error: 'Usuario no encontrado' });
 			}
@@ -102,6 +104,8 @@ route.patch('/:id/pedidos/:idPedido', mwAuthToken.verificarTokenUsuario, async (
 		repoPedidos.modificarEstadoDePedido(req.body, req.params.idPedido).then((resultado) => {
 			if (resultado) {
 				res.status(200).json({ Mensaje: 'Pedido modificado' });
+				console.log(resultado);
+				servicesUsuarios.enviarMailCancelandoPedido(resultado);
 			} else {
 				res.status(404).json({ Error: 'Pedido no encontrado' });
 			}

@@ -5,6 +5,7 @@ const MODAL_UPDATE_TEXTO = document.querySelector('#update-modal-texto');
 const BTN_UPDATE = document.querySelector('#btn-update');
 const LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion');
 const BTN_LINK_CERRAR_SESION = document.querySelector('#link-cerrar-sesion-boton');
+const INPUTS = document.getElementsByTagName('input');
 
 let idUsuarioActual = null;
 let token = localStorage.getItem('token');
@@ -32,14 +33,30 @@ comprobarToken();
 
 // VALIDAR CAMPOS
 
+for (let i = 0; i < INPUTS.length; i++) {
+	const element = INPUTS[i];
+	element.addEventListener('keyup', (e) => {
+		e.preventDefault();
+		validarInput();
+	});
+}
+
+function validarEmail(email) {
+	var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email) ? true : false;
+}
+
 function validarInput() {
 	if (
-		FORM_UPDATE.nombre_completo.value.length == 0 &&
-		FORM_UPDATE.email.value.length == 0 &&
-		FORM_UPDATE.direccion.value.length == 0 &&
-		FORM_UPDATE.telefono.value.length == 0 &&
-		FORM_UPDATE.contrasenia.value.length == 0
+		FORM_UPDATE.nombre_completo.value.length == 0 ||
+		FORM_UPDATE.email.value.length == 0 ||
+		FORM_UPDATE.direccion.value.length == 0 ||
+		FORM_UPDATE.telefono.value.length == 0 ||
+		FORM_UPDATE.contrasenia.value.length == 0 ||
+		!validarEmail(FORM_UPDATE.email.value)
 	) {
+		BTN_UPDATE.disabled = true;
+	} else {
 		BTN_UPDATE.disabled = false;
 	}
 }

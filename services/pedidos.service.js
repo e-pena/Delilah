@@ -1,11 +1,11 @@
 const repoProductos = require('../repositories/productos.repo');
 const repoUsuarios = require('../repositories/usuarios.repo');
 const repoPedidos = require('../repositories/pedidos.repo');
+const serviceUsuarios = require('../services/usuarios.service');
 
 async function comprobarProducto(data) {
 	let idProductos = [];
 	let descripcionProductos = '';
-	// código nuevo
 	for (let i = 0; i < data.length; i++) {
 		const element = data[i];
 		let productoEncontrado = await repoProductos.getProductsById(element.id);
@@ -23,7 +23,7 @@ async function comprobarProducto(data) {
 
 async function comprobarUsuarioYProducto(data, idUsuario) {
 	try {
-		let existeUsuario = await repoUsuarios.getUsersById(idUsuario);
+		let [existeUsuario] = await repoUsuarios.getUsersById(idUsuario);
 		let existeProducto = await comprobarProducto(data.productos);
 		if (
 			existeProducto &&
@@ -34,6 +34,11 @@ async function comprobarUsuarioYProducto(data, idUsuario) {
 			data.pago_id >= 0
 		) {
 			await repoPedidos.agregarNuevoPedido(data, idUsuario, existeProducto);
+			serviceUsuarios.enviarMailPedidoNuevo(
+				existeUsuario.email,
+				existeUsuario.nombre_completo,
+				existeProducto.descripcionProductos
+			);
 			return data;
 		} else {
 			throw new Error('El pedido no se puede realizar');

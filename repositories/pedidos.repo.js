@@ -147,7 +147,7 @@ async function getPedidosById(id) {
 
 async function modificarEstadoDePedido(data, id) {
 	try {
-		let comprobacionDePedido = await getPedidosById(id);
+		let [comprobacionDePedido] = await getPedidosById(id);
 		if (comprobacionDePedido) {
 			await sql.query('UPDATE pedidos SET estado_id = :estado_id WHERE id = :id', {
 				replacements: {
@@ -156,7 +156,7 @@ async function modificarEstadoDePedido(data, id) {
 				},
 				type: sql.QueryTypes.UPDATE,
 			});
-			return data;
+			return comprobacionDePedido;
 		} else {
 			return false;
 		}

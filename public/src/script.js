@@ -1,7 +1,12 @@
 const FORM_LOGIN = document.querySelector('#form-login');
 const FORM_REGISTRO = document.querySelector('#form-registro');
+const BTN_REGISTRO = document.querySelector('#btn_registro');
+const INPUTS = FORM_REGISTRO.getElementsByTagName('input');
 const MODAL_LOGIN = document.querySelector('#modal-login');
 const BTN_MODAL_LOGIN = document.querySelector('#btn-modal');
+const MODAL_REGISTRO = document.querySelector('#registro-modal');
+const MODAL_REGISTRO_TITULO = document.querySelector('#registro-modal-titulo');
+const MODAL_REGISTRO_TEXTO = document.querySelector('#registro-modal-texto');
 const LINK_ADMIN = document.querySelector('#link-admin');
 const LINK_PEDIDO_NUEVO = document.querySelector('#link-pedido-nuevo');
 const LINK_REGISTRO = document.querySelector('#link-registro');
@@ -55,11 +60,11 @@ function comprobarToken() {
 		let tokens = jwt.split('.');
 		let decoded = JSON.parse(atob(tokens[1]));
 		idUsuarioActual = decoded.id;
+		LINK_PEDIDO_NUEVO.classList.remove('oculto');
 		LINK_REGISTRO.classList.add('oculto');
 		LINK_USUARIO_DATOS.classList.remove('oculto');
 		LINK_USUARIO_PEDIDOS.classList.remove('oculto');
 		LINK_CERRAR_SESION.classList.remove('oculto');
-		LINK_PEDIDO_NUEVO.classList.remove('oculto');
 		CONTENEDOR_LOGIN.classList.add('oculto');
 		mostrarProductos(jwt);
 		if (decoded.permisos == 2) {
@@ -110,6 +115,7 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 					LINK_USUARIO_DATOS.classList.remove('oculto');
 					LINK_USUARIO_PEDIDOS.classList.remove('oculto');
 					LINK_CERRAR_SESION.classList.remove('oculto');
+					LINK_PEDIDO_NUEVO.classList.remove('oculto');
 					CONTENEDOR_LOGIN.classList.add('oculto');
 					idUsuarioActual = decoded.id;
 					if (decoded.permisos == 2) {
@@ -127,6 +133,39 @@ FORM_LOGIN.addEventListener('submit', function (e) {
 	}
 });
 
+// VALIDAR CAMPOS
+
+for (let i = 0; i < INPUTS.length; i++) {
+	const element = INPUTS[i];
+	element.addEventListener('keyup', (e) => {
+		e.preventDefault();
+		validarInput();
+	});
+}
+
+function validarEmail(email) {
+	var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email) ? true : false;
+}
+
+function validarInput() {
+	if (
+		FORM_REGISTRO.username.value.length == 0 ||
+		FORM_REGISTRO.nombre_completo.value.length == 0 ||
+		FORM_REGISTRO.email.value.length == 0 ||
+		FORM_REGISTRO.direccion.value.length == 0 ||
+		FORM_REGISTRO.telefono.value.length == 0 ||
+		FORM_REGISTRO.contrasenia.value.length == 0 ||
+		!validarEmail(FORM_REGISTRO.email.value)
+	) {
+		BTN_REGISTRO.disabled = true;
+	} else {
+		BTN_REGISTRO.disabled = false;
+	}
+}
+
+validarInput();
+
 // FUNCIÓN PARA REGISTRARSE
 
 FORM_REGISTRO.addEventListener('submit', function (e) {
@@ -140,15 +179,18 @@ FORM_REGISTRO.addEventListener('submit', function (e) {
 		})
 			.then((response) => {
 				if (response.status == 400) {
-					MODAL_LOGIN.innerText = 'Información incompleta';
+					MODAL_REGISTRO_TITULO.innerText = 'Ocurrió un error';
+					MODAL_REGISTRO_TEXTO.innerText = 'Información incompleta';
 				}
 				if (response.status == 409) {
-					MODAL_LOGIN.innerText = 'El username ya existe, seleccione uno nuevo';
+					MODAL_REGISTRO_TITULO.innerText = 'El username ya existe';
+					MODAL_REGISTRO_TEXTO.innerText = 'Seleccione uno nuevo';
 				}
 				if (response.status == 201) {
-					MODAL_LOGIN.innerText = 'Registro exitoso. Realice el LOGIN';
-					return response.json();
+					MODAL_REGISTRO_TITULO.innerText = 'Registro exitoso';
+					MODAL_REGISTRO_TEXTO.innerText = 'Realice el LOGIN';
 				}
+				return response.json();
 			})
 			.then((data) => {
 				return data;

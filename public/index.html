@@ -54,6 +54,7 @@
 									<div class="form-group">
 										<label for="usuario-registro">Usuario</label>
 										<input
+											required
 											type="text"
 											name="username"
 											class="form-control"
@@ -66,25 +67,31 @@
 									</div>
 									<div class="form-group">
 										<label for="nombre">Nombre y Apellido</label>
-										<input type="text" name="nombre_completo" class="form-control" id="nombre" />
+										<input required type="text" name="nombre_completo" class="form-control" id="nombre" />
 									</div>
 									<div class="form-group">
 										<label for="email">E-mail</label>
-										<input type="email" name="email" class="form-control" id="email" />
+										<input required type="email" name="email" class="form-control" id="email" />
 									</div>
 									<div class="form-group">
 										<label for="direccion">Dirección</label>
-										<input type="text" name="direccion" class="form-control" id="direccion" />
+										<input required type="text" name="direccion" class="form-control" id="direccion" />
 									</div>
 									<div class="form-group">
 										<label for="telefono">Teléfono</label>
-										<input type="tel" name="telefono" class="form-control" id="telefono" />
+										<input required type="tel" name="telefono" class="form-control" id="telefono" />
 									</div>
 									<div class="form-group">
 										<label for="contrasenia-registro">Contraseña</label>
-										<input type="password" name="contrasenia" class="form-control" id="contrasenia-registro" />
+										<input required type="password" name="contrasenia" class="form-control" id="contrasenia-registro" />
 									</div>
-									<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#registro-modal">
+									<button
+										id="btn_registro"
+										type="submit"
+										class="btn btn-success"
+										data-toggle="modal"
+										data-target="#registro-modal"
+									>
 										Confirmar
 									</button>
 								</form>
@@ -124,7 +131,7 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body">Por favor, ingrese para realizar su pedido.</div>
+						<div id="registro-modal-texto" class="modal-body">Por favor, ingrese para realizar su pedido.</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 						</div>
