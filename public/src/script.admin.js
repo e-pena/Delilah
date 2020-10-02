@@ -71,7 +71,6 @@ function cargarUsuarios() {
 					let usuario = document.createElement('tr');
 					if (element.permisos_id == 1) {
 						usuario.innerHTML = `<th scope="row" class="table-success">${element.id}</th>
-					<td class="table-success">${element.username}</td>
 					<td class="table-success">${element.nombre_completo}</td>
 					<td class="table-success">${element.email}</td>
 					<td class="table-success">${element.direccion}</td>
@@ -81,7 +80,6 @@ function cargarUsuarios() {
 					}
 					if (element.permisos_id == 2) {
 						usuario.innerHTML = `<th scope="row" class="table-success">${element.id}</th>
-					<td class="table-success">${element.username}</td>
 					<td class="table-success">${element.nombre_completo}</td>
 					<td class="table-success">${element.email}</td>
 					<td class="table-success">${element.direccion}</td>

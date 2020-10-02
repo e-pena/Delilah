@@ -52,20 +52,6 @@
 							<div id="registro" class="dropdown-menu col-12" aria-labelledby="navbarDropdown">
 								<form id="form-registro">
 									<div class="form-group">
-										<label for="usuario-registro">Usuario</label>
-										<input
-											required
-											type="text"
-											name="username"
-											class="form-control"
-											id="usuario-registro"
-											aria-describedby="userHelp"
-										/>
-										<small id="userHelp" class="form-text text-muted"
-											>Ingrese un nombre de usuario único sin espacios</small
-										>
-									</div>
-									<div class="form-group">
 										<label for="nombre">Nombre y Apellido</label>
 										<input required type="text" name="nombre_completo" class="form-control" id="nombre" />
 									</div>
@@ -147,8 +133,8 @@
 					<h5 class="card-title">Ingresar</h5>
 					<form id="form-login">
 						<div class="form-group">
-							<label for="usuario-login">Usuario</label>
-							<input type="text" name="username" class="form-control" id="usuario-login" />
+							<label for="usuario-login">Email</label>
+							<input type="email" name="email" class="form-control" id="usuario-login" />
 						</div>
 						<div class="form-group">
 							<label for="contrasenia-login">Contraseña</label>
@@ -185,7 +171,7 @@
 		<!-- SECCION PRODUCTOS -->
 		<section class="oculto" id="contenedor-productos">
 			<div class="container" id="grupo-productos">
-				<div class="row">
+				<div id="contenedor-productos-carrito" class="row">
 					<!-- LISTADO DE PRODUCTOS -->
 					<div id="listado-productos" class="col-10">
 						<div class="row">
@@ -193,9 +179,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -214,9 +200,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -235,9 +221,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -256,9 +242,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -277,9 +263,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -298,9 +284,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -319,9 +305,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -340,9 +326,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -361,9 +347,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -382,9 +368,9 @@
 								<img src="" class="card-img-top imagen-producto" alt="" />
 								<div class="card-body">
 									<h5 class="card-title titulo-producto"></h5>
+									<p class="card-text precio-producto"></p>
 								</div>
 								<div class="input-group contenedor-cantidad">
-									<p class="card-text precio-producto"></p>
 									<select class="cantidad-productos custom-select">
 										<option selected>Cantidad</option>
 										<option value="1">1</option>
@@ -414,7 +400,7 @@
 							</div>
 							<div id="detalle-pedido"></div>
 							<div class="input-group" id="contenedor-medio-pago">
-								<label for="medio-pago">Medio de pago: </label>
+								<label id="label-medio-pago" for="medio-pago">Medio de pago: </label>
 								<select id="medio-pago" class="custom-select">
 									<option value="1">Efectivo</option>
 									<option value="2">Mercadopago</option>
@@ -441,6 +427,7 @@
 						</div>
 						<div>
 							<iframe
+								id="mapa-envio"
 								src="https://www.google.com/maps/d/embed?mid=1TnxbiPztX_Xw1RDNtUtFKex38MS6IujC"
 								width="350"
 								height="300"

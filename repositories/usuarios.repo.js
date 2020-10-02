@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 
 async function comprobarUsuario(data) {
 	try {
-		let resultado = await sql.query('SELECT * FROM usuarios WHERE username = ?', {
-			replacements: [data.username],
+		let resultado = await sql.query('SELECT * FROM usuarios WHERE email = ?', {
+			replacements: [data.email],
 			type: sql.QueryTypes.SELECT,
 		});
 		if (resultado.length == 1) {
@@ -19,8 +19,8 @@ async function comprobarUsuario(data) {
 
 async function registrarUsuario(data) {
 	try {
-		let resultado = await sql.query('SELECT * FROM usuarios WHERE username = ?', {
-			replacements: [data.username],
+		let resultado = await sql.query('SELECT * FROM usuarios WHERE email = ?', {
+			replacements: [data.email],
 			type: sql.QueryTypes.SELECT,
 		});
 		console.log(resultado);
@@ -33,10 +33,9 @@ async function registrarUsuario(data) {
 				bcrypt.hash(usuarioRegister.contrasenia, salts).then(async (hash) => {
 					usuarioRegister.contrasenia = hash;
 					nuevoUsuario = await sql.query(
-						'INSERT INTO usuarios (username, nombre_completo, email, direccion, telefono, contrasenia, permisos_id) VALUES (:username, :nombre_completo, :email, :direccion, :telefono, :contrasenia, :permisos_id)',
+						'INSERT INTO usuarios (nombre_completo, email, direccion, telefono, contrasenia, permisos_id) VALUES (:nombre_completo, :email, :direccion, :telefono, :contrasenia, :permisos_id)',
 						{
 							replacements: {
-								username: usuarioRegister.username,
 								nombre_completo: usuarioRegister.nombre_completo,
 								email: usuarioRegister.email,
 								direccion: usuarioRegister.direccion,

@@ -20,6 +20,7 @@ body {
 	max-width: 80em;
 	margin-left: 2em;
 	margin-top: 0.5em;
+	overflow-x: scroll;
 }
 
 #titulo-tabla {
@@ -41,4 +42,61 @@ body {
 
 .oculto {
 	display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+	#contenedor-tabla-usuario-pedidos {
+		max-width: 62em;
+		margin-left: 1em;
+	}
+
+	#contenedor-tabla-usuario-pedidos button {
+		font-size: 0.9em;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#contenedor-tabla-usuario-pedidos {
+		max-width: 52em;
+		margin-left: 0.5em;
+		font-size: 0.9em;
+	}
+
+	#contenedor-tabla-usuario-pedidos button {
+		font-size: 0.8em;
+	}
+
+	.navbar {
+		text-align: end;
+	}
+}
+
+@media only screen and (max-width: 425px) {
+	#contenedor-tabla-usuario-pedidos {
+		width: 40em;
+		margin-left: 0.5em;
+		font-size: 0.9em;
+	}
+
+	#contenedor-tabla-usuario-pedidos button {
+		font-size: 0.8em;
+	}
+
+	#titulo-tabla {
+		font-size: 1em;
+	}
+}
+
+@media only screen and (max-width: 375px) {
+	#contenedor-tabla-usuario-pedidos {
+		max-width: 40em;
+		font-size: 0.8em;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	#contenedor-tabla-usuario-pedidos {
+		max-width: 35em;
+		font-size: 0.7em;
+	}
 }

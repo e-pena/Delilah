@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const repoUsuarios = require('../repositories/usuarios.repo');
 require('dotenv').config();
 
-async function enviarMailRegistro(email, nombre, username) {
+async function enviarMailRegistro(email, nombre) {
 	try {
 		let transporter = nodemailer.createTransport({
 			host: 'smtp-mail.outlook.com',
@@ -18,8 +18,7 @@ async function enviarMailRegistro(email, nombre, username) {
 			to: `${email}`, // list of receivers
 			subject: 'Registro confirmado', // Subject line
 			html: `<h2>Gracias por registrarte en Delilah Restó!</h2>
-            <p>${nombre}, te damos la bienvenida al lugar N°1 de comidas.</p>
-            <p>Recordá que tu usuario es ${username}`, // html body
+            <p>${nombre}, te damos la bienvenida al lugar N°1 de comidas.</p>`, // html body
 		});
 
 		console.log('Message sent: %s', info.messageId);

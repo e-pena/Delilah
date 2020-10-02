@@ -35,6 +35,7 @@ const MODAL_CONFIRMACION_PEDIDO_TITULO = document.querySelector('#modal-confirma
 const MODAL_CONFIRMACION_PEDIDO_TEXTO = document.querySelector('#modal-confirmacion-pedido-texto');
 const CHECKBOX_ENVIO = document.querySelector('#envio');
 const TEXTO_ENVIO = document.querySelector('#envio-texto');
+const CONTENEDOR_PRODUCTOS_CARRITO = document.querySelector('#contenedor-productos-carrito');
 
 let listaProductos = [];
 let listadoProductosPedidos = [];
@@ -81,7 +82,7 @@ comprobarToken();
 
 FORM_LOGIN.addEventListener('submit', function (e) {
 	e.preventDefault();
-	const payload = `{ "username": "${FORM_LOGIN.username.value}", "contrasenia": "${FORM_LOGIN.contrasenia.value}"}`;
+	const payload = `{ "email": "${FORM_LOGIN.email.value}", "contrasenia": "${FORM_LOGIN.contrasenia.value}"}`;
 	try {
 		fetch('/login', {
 			method: 'POST',
@@ -150,7 +151,6 @@ function validarEmail(email) {
 
 function validarInput() {
 	if (
-		FORM_REGISTRO.username.value.length == 0 ||
 		FORM_REGISTRO.nombre_completo.value.length == 0 ||
 		FORM_REGISTRO.email.value.length == 0 ||
 		FORM_REGISTRO.direccion.value.length == 0 ||
@@ -170,7 +170,7 @@ validarInput();
 
 FORM_REGISTRO.addEventListener('submit', function (e) {
 	e.preventDefault();
-	const payload = `{ "username": "${FORM_REGISTRO.username.value}", "nombre_completo": "${FORM_REGISTRO.nombre_completo.value}", "email": "${FORM_REGISTRO.email.value}", "direccion": "${FORM_REGISTRO.direccion.value}", "telefono": "${FORM_REGISTRO.telefono.value}", "contrasenia": "${FORM_REGISTRO.contrasenia.value}", "permisos_id": 1}`;
+	const payload = `{ "nombre_completo": "${FORM_REGISTRO.nombre_completo.value}", "email": "${FORM_REGISTRO.email.value}", "direccion": "${FORM_REGISTRO.direccion.value}", "telefono": "${FORM_REGISTRO.telefono.value}", "contrasenia": "${FORM_REGISTRO.contrasenia.value}", "permisos_id": 1}`;
 	try {
 		fetch('/register', {
 			method: 'POST',
@@ -183,7 +183,7 @@ FORM_REGISTRO.addEventListener('submit', function (e) {
 					MODAL_REGISTRO_TEXTO.innerText = 'Información incompleta';
 				}
 				if (response.status == 409) {
-					MODAL_REGISTRO_TITULO.innerText = 'El username ya existe';
+					MODAL_REGISTRO_TITULO.innerText = 'El email ya está siendo utilizado';
 					MODAL_REGISTRO_TEXTO.innerText = 'Seleccione uno nuevo';
 				}
 				if (response.status == 201) {
@@ -341,3 +341,14 @@ BTN_LINK_CERRAR_SESION.addEventListener('click', (e) => {
 	localStorage.clear();
 	location.reload();
 });
+
+// MEDIA QUERIES
+
+if (window.matchMedia('(max-width: 1024px)').matches) {
+	CONTENEDOR_PRODUCTOS_LISTADO.classList.remove('col-10');
+	CONTENEDOR_PRODUCTOS_LISTADO.classList.add('col-12');
+	CONTENEDOR_PRODUCTOS_CARRITO.classList.remove('row');
+	CONTENEDOR_PRODUCTOS_CARRITO.classList.add('column');
+	CONTENEDOR_PEDIDO_PREVIEW.classList.remove('col-2');
+	CONTENEDOR_PEDIDO_PREVIEW.classList.add('col-12');
+}

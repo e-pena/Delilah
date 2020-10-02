@@ -56,7 +56,7 @@ body {
 }
 
 .cantidad-productos {
-	max-width: 7em;
+	max-width: 10em;
 	height: 2.8em;
 }
 
@@ -64,10 +64,11 @@ body {
 	font-size: 1.4em;
 	font-weight: bold;
 	margin-right: 1em;
+	text-align: end;
 }
 
 .titulo-producto {
-	text-align: end;
+	text-align: start;
 	font-size: 1.4em;
 }
 
@@ -111,4 +112,203 @@ body {
 
 .oculto {
 	display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+	#productos-agregados {
+		display: flex;
+		flex-direction: row;
+		margin-top: 2em;
+	}
+
+	#pedido-preview {
+		width: 35em;
+		margin-right: 3em;
+	}
+
+	#mapa-envio {
+		width: 25em;
+		height: 24em;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#productos-agregados {
+		display: flex;
+		flex-direction: column;
+		margin-top: 1em;
+	}
+
+	.navbar {
+		text-align: end;
+	}
+
+	#pedido-preview {
+		width: 45em;
+	}
+
+	#mapa-envio {
+		width: 45em;
+	}
+
+	.card {
+		width: 11.5em;
+	}
+
+	.producto {
+		margin-left: 2em;
+	}
+
+	.imagen-producto {
+		max-width: 11em;
+		max-height: 11em;
+	}
+
+	.titulo-producto {
+		font-size: 1em;
+		text-align: start;
+	}
+
+	.precio-producto {
+		font-size: 1em;
+	}
+
+	.contenedor-cantidad {
+		margin-top: -1em;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.cantidad-productos {
+		font-size: 0.8em;
+	}
+
+	.btn-agregar-producto {
+		font-size: 0.8em;
+	}
+}
+
+@media only screen and (max-width: 425px) {
+	#contenedor-productos {
+		margin-left: -1em;
+	}
+
+	#pedido-preview {
+		width: 25em;
+	}
+
+	#mapa-envio {
+		width: 25em;
+	}
+
+	.card {
+		width: 11.5em;
+	}
+
+	.producto {
+		margin: 0.5em;
+	}
+
+	.imagen-producto {
+		max-width: 11em;
+		max-height: 11em;
+	}
+
+	.titulo-producto {
+		font-size: 1em;
+	}
+
+	.precio-producto {
+		font-size: 1em;
+	}
+}
+
+@media only screen and (max-width: 375px) {
+	#pedido-preview {
+		width: 22em;
+	}
+
+	#mapa-envio {
+		width: 22em;
+	}
+
+	.card {
+		width: 10em;
+	}
+
+	.imagen-producto {
+		max-width: 9.5em;
+		max-height: 9.5em;
+	}
+
+	.titulo-producto {
+		font-size: 0.9em;
+	}
+
+	.precio-producto {
+		font-size: 0.9em;
+	}
+
+	.cantidad-productos {
+		font-size: 0.7em;
+	}
+
+	.btn-agregar-producto {
+		font-size: 0.7em;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	#pedido-preview {
+		width: 18.5em;
+	}
+
+	#mapa-envio {
+		width: 18.5em;
+	}
+
+	.card {
+		width: 9em;
+	}
+
+	.producto {
+		margin: 0.2em;
+	}
+
+	.imagen-producto {
+		max-width: 8.5em;
+		max-height: 8.5em;
+	}
+
+	.titulo-producto {
+		font-size: 0.8em;
+	}
+
+	.precio-producto {
+		font-size: 0.8em;
+	}
+
+	.cantidad-productos {
+		font-size: 0.7em;
+	}
+
+	.btn-agregar-producto {
+		font-size: 0.7em;
+	}
+
+	#detalle-pedido {
+		font-size: 0.8em;
+	}
+
+	#label-medio-pago {
+		font-size: 0.9em;
+	}
+
+	#medio-pago {
+		font-size: 0.9em;
+	}
+
+	.form-check-label {
+		font-size: 0.9em;
+	}
 }

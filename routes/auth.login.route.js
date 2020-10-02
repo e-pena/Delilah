@@ -18,7 +18,7 @@ route.post('/', async (req, res) => {
 					}
 					if (match) {
 						let payload = {
-							usuario: usuarioExistente.username,
+							email: usuarioExistente.email,
 							direccion: usuarioExistente.direccion,
 							telefono: usuarioExistente.telefono,
 							permisos: usuarioExistente.permisos_id,

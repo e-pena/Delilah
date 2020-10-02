@@ -102,22 +102,22 @@
 
 		<section class="collapse" id="usuarios">
 			<h3 class="secciones-titulo" id="usuarios-titulo">Usuarios registrados</h3>
-			<table class="table table-striped table-dark" id="usuarios-tabla-encabezado">
-				<thead>
-					<tr>
-						<th scope="col">id</th>
-						<th scope="col">Username</th>
-						<th scope="col">Nombre completo</th>
-						<th scope="col">Email</th>
-						<th scope="col">Direccion</th>
-						<th scope="col">Teléfono</th>
-						<th scope="col">Borrar</th>
-						<th scope="col">Permisos</th>
-					</tr>
-				</thead>
-				<tbody id="usuarios-tabla-cuerpo"></tbody>
-			</table>
-
+			<div class="table-responsive">
+				<table class="table table-striped table-dark" id="usuarios-tabla-encabezado">
+					<thead>
+						<tr>
+							<th scope="col">id</th>
+							<th scope="col">Nombre completo</th>
+							<th scope="col">Email</th>
+							<th scope="col">Direccion</th>
+							<th scope="col">Teléfono</th>
+							<th scope="col">Borrar</th>
+							<th scope="col">Permisos</th>
+						</tr>
+					</thead>
+					<tbody id="usuarios-tabla-cuerpo"></tbody>
+				</table>
+			</div>
 			<div
 				class="modal fade"
 				id="usuario-modal"
@@ -146,21 +146,21 @@
 
 		<section class="collapse" id="productos">
 			<h3 class="secciones-titulo" id="productos-titulo">Productos disponibles</h3>
-
-			<table class="table table-striped table-dark" id="productos-tabla-encabezado">
-				<thead>
-					<tr>
-						<th scope="col">id</th>
-						<th scope="col">Titulo</th>
-						<th scope="col">Precio</th>
-						<th scope="col">Imagen</th>
-						<th scope="col">Editar</th>
-						<th scope="col">Borrar</th>
-					</tr>
-				</thead>
-				<tbody id="productos-tabla-cuerpo"></tbody>
-			</table>
-
+			<div class="table-responsive">
+				<table class="table table-striped table-dark" id="productos-tabla-encabezado">
+					<thead>
+						<tr>
+							<th scope="col">id</th>
+							<th scope="col">Titulo</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Imagen</th>
+							<th scope="col">Editar</th>
+							<th scope="col">Borrar</th>
+						</tr>
+					</thead>
+					<tbody id="productos-tabla-cuerpo"></tbody>
+				</table>
+			</div>
 			<div
 				class="modal fade"
 				id="producto-modal"
@@ -271,24 +271,25 @@
 
 		<section class="collapse" id="pedidos">
 			<h3 class="secciones-titulo" id="pedidos-titulo">Pedidos realizados</h3>
-			<table class="table table-striped table-dark" id="pedidos-tabla-encabezado">
-				<thead>
-					<tr>
-						<th scope="col">id</th>
-						<th scope="col">Descripción</th>
-						<th scope="col">Costo</th>
-						<th scope="col">Estado</th>
-						<th scope="col">Pago</th>
-						<th scope="col">Usuario</th>
-						<th scope="col">Dirección</th>
-						<th scope="col">Teléfono</th>
-						<th scope="col">Email</th>
-						<th scope="col">Actualizar estado</th>
-					</tr>
-				</thead>
-				<tbody id="pedidos-tabla-cuerpo"></tbody>
-			</table>
-
+			<div class="table-responsive">
+				<table class="table table-striped table-dark" id="pedidos-tabla-encabezado">
+					<thead>
+						<tr>
+							<th scope="col">id</th>
+							<th scope="col">Descripción</th>
+							<th scope="col">Costo</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Pago</th>
+							<th scope="col">Usuario</th>
+							<th scope="col">Dirección</th>
+							<th scope="col">Teléfono</th>
+							<th scope="col">Email</th>
+							<th scope="col">Actualizar estado</th>
+						</tr>
+					</thead>
+					<tbody id="pedidos-tabla-cuerpo"></tbody>
+				</table>
+			</div>
 			<!-- MODAL PARA EDITAR PEDIDO -->
 			<div
 				class="modal fade"
