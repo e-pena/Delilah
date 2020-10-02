@@ -5,6 +5,7 @@ const routeProductos = require('./routes/productos.route');
 const routePedidos = require('./routes/pedidos.route');
 const routeAuthLogin = require('./routes/auth.login.route');
 const routeAuthRegister = require('./routes/auth.register.route');
+const PORT = 3000;
 
 server.use(express.json());
 server.use(express.static('./public'));
@@ -22,6 +23,6 @@ server.use((err, req, res, next) => {
 	next();
 });
 
-server.listen(3000, () => {
+server.listen(PORT, () => {
 	console.log('Server run');
 });
