@@ -5,7 +5,7 @@ const routeProductos = require('./routes/productos.route');
 const routePedidos = require('./routes/pedidos.route');
 const routeAuthLogin = require('./routes/auth.login.route');
 const routeAuthRegister = require('./routes/auth.register.route');
-const PORT = 3000;
+require('dotenv').config();
 
 server.use(express.json());
 server.use(express.static('./public'));
@@ -23,6 +23,6 @@ server.use((err, req, res, next) => {
 	next();
 });
 
-server.listen(PORT, () => {
+server.listen(process.env.PORT, () => {
 	console.log('Server run');
 });
