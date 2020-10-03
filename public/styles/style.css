@@ -194,15 +194,15 @@ body {
 	}
 
 	#pedido-preview {
-		width: 25em;
+		width: 24em;
 	}
 
 	#mapa-envio {
-		width: 25em;
+		width: 24em;
 	}
 
 	.card {
-		width: 11.5em;
+		width: 10.5em;
 	}
 
 	.producto {
@@ -210,8 +210,8 @@ body {
 	}
 
 	.imagen-producto {
-		max-width: 11em;
-		max-height: 11em;
+		max-width: 10em;
+		max-height: 10em;
 	}
 
 	.titulo-producto {
@@ -225,20 +225,20 @@ body {
 
 @media only screen and (max-width: 375px) {
 	#pedido-preview {
-		width: 22em;
+		width: 21em;
 	}
 
 	#mapa-envio {
-		width: 22em;
+		width: 21em;
 	}
 
 	.card {
-		width: 10em;
+		width: 9em;
 	}
 
 	.imagen-producto {
-		max-width: 9.5em;
-		max-height: 9.5em;
+		max-width: 8.5em;
+		max-height: 8.5em;
 	}
 
 	.titulo-producto {
