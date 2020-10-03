@@ -45,7 +45,7 @@ async function agregarNuevoProducto(data) {
 	try {
 		await sql.query('INSERT INTO productos (titulo, precio, imagen) VALUES (:titulo, :precio, :imagen)', {
 			replacements: { titulo: data.titulo, precio: data.precio, imagen: data.imagen },
-			type: sql.QueryTypes.SELECT,
+			type: sql.QueryTypes.INSERT,
 		});
 	} catch (error) {
 		return error;
