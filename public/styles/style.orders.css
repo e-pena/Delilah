@@ -1,7 +1,13 @@
+html {
+	min-height: 100%;
+	position: relative;
+}
+
 body {
 	background-image: url('../images/fondo.jpg');
 	background-color: transparent;
 	width: 100vw;
+	margin-bottom: 4em;
 }
 
 .card {
@@ -38,6 +44,26 @@ body {
 
 .btn-danger {
 	align-items: end;
+}
+
+.footer {
+	background-color: #292828;
+	color: #ffffff;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	position: absolute;
+	bottom: 0;
+	width: 100vw;
+}
+
+.footer-social-network > a {
+	display: inline-block;
+	margin-left: 1.75em;
+	cursor: pointer;
 }
 
 .oculto {
@@ -85,6 +111,10 @@ body {
 	#titulo-tabla {
 		font-size: 1em;
 	}
+
+	.footer {
+		font-size: 0.6em;
+	}
 }
 
 @media only screen and (max-width: 375px) {
@@ -92,11 +122,19 @@ body {
 		max-width: 40em;
 		font-size: 0.8em;
 	}
+
+	.footer {
+		font-size: 0.5em;
+	}
 }
 
 @media only screen and (max-width: 320px) {
 	#contenedor-tabla-usuario-pedidos {
 		max-width: 35em;
 		font-size: 0.7em;
+	}
+
+	.footer {
+		font-size: 0.4em;
 	}
 }

@@ -6,6 +6,12 @@
 		<title>Delilah Restó</title>
 		<link
 			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.0/css/all.css"
+			integrity="sha384-OLYO0LymqQ+uHXELyx93kblK5YIS3B2ZfLGBmsJaUyor7CpMTBsahDHByqSuWW+q"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 			crossorigin="anonymous"
@@ -57,48 +63,27 @@
 			</nav>
 		</header>
 
-		<div id="contenedor-btn-collapse">
-			<button
-				class="btn btn-primary btn-collapse"
-				type="button"
-				data-toggle="collapse"
-				data-target="#usuarios"
-				aria-expanded="false"
-				aria-controls="usuarios"
-			>
-				Usuarios
-			</button>
-			<button
-				class="btn btn-primary btn-collapse"
-				type="button"
-				data-toggle="collapse"
-				data-target="#productos"
-				aria-expanded="false"
-				aria-controls="productos"
-			>
-				Productos
-			</button>
-			<button
-				class="btn btn-primary btn-collapse"
-				type="button"
-				data-toggle="modal"
-				data-target="#modal-productos-creacion"
-				aria-expanded="false"
-				aria-controls="modal-productos-creacion"
-			>
-				Crear producto
-			</button>
-			<button
-				class="btn btn-primary btn-collapse"
-				type="button"
-				data-toggle="collapse"
-				data-target="#pedidos"
-				aria-expanded="false"
-				aria-controls="pedidos"
-			>
-				Pedidos
-			</button>
-		</div>
+		<button
+			class="btn btn-primary btn-collapse"
+			type="button"
+			data-toggle="modal"
+			data-target="#modal-productos-creacion"
+			aria-expanded="false"
+			aria-controls="modal-productos-creacion"
+		>
+			Crear producto
+		</button>
+
+		<button
+			class="btn btn-primary btn-collapse"
+			type="button"
+			data-toggle="collapse"
+			data-target="#usuarios"
+			aria-expanded="false"
+			aria-controls="usuarios"
+		>
+			Usuarios
+		</button>
 
 		<section class="collapse" id="usuarios">
 			<h3 class="secciones-titulo" id="usuarios-titulo">Usuarios registrados</h3>
@@ -144,6 +129,16 @@
 			</div>
 		</section>
 
+		<button
+			class="btn btn-primary btn-collapse"
+			type="button"
+			data-toggle="collapse"
+			data-target="#productos"
+			aria-expanded="false"
+			aria-controls="productos"
+		>
+			Productos
+		</button>
 		<section class="collapse" id="productos">
 			<h3 class="secciones-titulo" id="productos-titulo">Productos disponibles</h3>
 			<div class="table-responsive">
@@ -227,48 +222,16 @@
 			</div>
 		</section>
 
-		<section>
-			<!-- MODAL PARA CREAR PRODUCTO -->
-			<div
-				class="modal fade"
-				id="modal-productos-creacion"
-				tabindex="-1"
-				aria-labelledby="modal-productos-creacion-label"
-				aria-hidden="true"
-			>
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="modal-productos-creacion-label">Crear producto</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form id="form-crear-producto">
-								<div class="form-group">
-									<label for="nombre" class="col-form-label">Título</label>
-									<input required type="text" name="titulo" class="form-control" id="crear-producto-titulo" />
-								</div>
-								<div class="form-group">
-									<label for="precio" class="col-form-label">Precio</label>
-									<input required type="number" name="precio" class="form-control" id="crear-producto-precio" />
-								</div>
-								<div class="form-group">
-									<label for="imagen" class="col-form-label">Imagen</label>
-									<input required type="url" name="imagen" class="form-control" id="crear-producto-imagen" />
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-									<button type="submit" class="btn btn-success" id="btn-crear-producto">Confirmar cambios</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
+		<button
+			class="btn btn-primary btn-collapse"
+			type="button"
+			data-toggle="collapse"
+			data-target="#pedidos"
+			aria-expanded="false"
+			aria-controls="pedidos"
+		>
+			Pedidos
+		</button>
 		<section class="collapse" id="pedidos">
 			<h3 class="secciones-titulo" id="pedidos-titulo">Pedidos realizados</h3>
 			<div class="table-responsive">
@@ -330,6 +293,60 @@
 				</div>
 			</div>
 		</section>
+
+		<section>
+			<!-- MODAL PARA CREAR PRODUCTO -->
+			<div
+				class="modal fade"
+				id="modal-productos-creacion"
+				tabindex="-1"
+				aria-labelledby="modal-productos-creacion-label"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="modal-productos-creacion-label">Crear producto</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="form-crear-producto">
+								<div class="form-group">
+									<label for="nombre" class="col-form-label">Título</label>
+									<input required type="text" name="titulo" class="form-control" id="crear-producto-titulo" />
+								</div>
+								<div class="form-group">
+									<label for="precio" class="col-form-label">Precio</label>
+									<input required type="number" name="precio" class="form-control" id="crear-producto-precio" />
+								</div>
+								<div class="form-group">
+									<label for="imagen" class="col-form-label">Imagen</label>
+									<input required type="url" name="imagen" class="form-control" id="crear-producto-imagen" />
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									<button type="submit" class="btn btn-success" id="btn-crear-producto">Confirmar cambios</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<div class="footer-copyright">
+				<span>© Esteban Pena - 2020 - Delilah Restó - Sitio ficticio sin función comercial</span>
+			</div>
+			<div class="footer-social-network">
+				<a href="https://www.linkedin.com/in/esteban-mariano-pena-5bb28b52/" target="_blank"
+					><i class="fab fa-linkedin fa-2x"></i
+				></a>
+				<a href="https://www.github.com/e-pena" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+			</div>
+		</footer>
 
 		<script
 			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
