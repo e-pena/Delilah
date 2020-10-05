@@ -170,7 +170,7 @@ validarInput();
 
 FORM_REGISTRO.addEventListener('submit', function (e) {
 	e.preventDefault();
-	const payload = `{ "nombre_completo": "${FORM_REGISTRO.nombre_completo.value}", "email": "${FORM_REGISTRO.email.value}", "direccion": "${FORM_REGISTRO.direccion.value}", "telefono": "${FORM_REGISTRO.telefono.value}", "contrasenia": "${FORM_REGISTRO.contrasenia.value}", "permisos_id": 2}`;
+	const payload = `{ "nombre_completo": "${FORM_REGISTRO.nombre_completo.value}", "email": "${FORM_REGISTRO.email.value}", "direccion": "${FORM_REGISTRO.direccion.value}", "telefono": "${FORM_REGISTRO.telefono.value}", "contrasenia": "${FORM_REGISTRO.contrasenia.value}", "permisos_id": 1}`;
 	try {
 		fetch('/register', {
 			method: 'POST',
